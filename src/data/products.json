@@ -17,6 +17,21 @@
     },
     {
       "id": 2,
+      "nome": "Armário Planejado Rustico",
+      "categoria": "armarios",
+      "categoriaSlug": "armarios",
+      "imagemPrincipal": "/images/produtos/armarios/armario-02.jpg",
+      "imagens": [
+        "/images/produtos/armarios/armario-01.jpg",
+        "/images/produtos/armarios/armario-02.jpg",
+        "/images/produtos/armarios/armario-03.jpg"
+      ],
+      "descricao": "Armário planejado em MDF com acabamento premium, ideal para quartos e áreas de armazenamento. Design moderno e funcional.",
+      "destaque": true,
+      "relevancia": 5
+    },
+    {
+      "id": 3,
       "nome": "Cozinha Planejada Completa",
       "categoria": "cozinha",
       "categoriaSlug": "cozinha",
@@ -30,7 +45,7 @@
       "relevancia": 5
     },
     {
-      "id": 3,
+      "id": 4,
       "nome": "Cama Planejada com Cabeceira",
       "categoria": "cama",
       "categoriaSlug": "cama",
