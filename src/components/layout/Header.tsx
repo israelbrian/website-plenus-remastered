@@ -12,12 +12,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-color-quaternary border-b border-color-tertiary">
+    <header className="bg-color-dark-bege border-b border-color-tertiary">
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo/Título */}
           <div className="text-center md:text-left">
-            <h1 className="font-family-primary text-3xl md:text-4xl font-bold text-color-primary">
+            <h1 className="font-family-primary text-3xl md:text-4xl font-bold text-color-quaternary">
               Plenus Planejados
             </h1>
           </div>

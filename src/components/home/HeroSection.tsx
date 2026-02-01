@@ -1,11 +1,12 @@
 import Image from 'next/image';
+import armario from '../../public/images/produtos/armario.jpg';
 
 export default function HeroSection() {
   return (
     <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
       <div className="absolute inset-0 bg-color-primary/50 z-10" />
       <Image
-        src="/images/empresa/hero.jpg"
+        src="{armario}"
         alt="Plenus Planejados - Móveis Planejados"
         fill
         className="object-cover"
