@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <section className="py-12 md:py-16 bg-color-quaternary">
+    <section className="py-12 md:py-16 bg-color-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-family-primary text-3xl md:text-4xl font-bold text-color-primary mb-6">

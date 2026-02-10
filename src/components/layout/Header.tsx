@@ -12,12 +12,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-color-dark-bege border-b border-color-tertiary">
+    <header className="bg-color-beige-500 border-b border-color-border">
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo/Título */}
           <div className="text-center md:text-left">
-            <h1 className="font-family-primary text-3xl md:text-4xl font-bold text-color-quaternary">
+            <h1 className="font-family-primary text-3xl md:text-4xl font-bold text-color-white">
               Plenus Planejados
             </h1>
           </div>
@@ -28,7 +28,7 @@ export default function Header() {
               {caracteristicas.map((caracteristica, index) => (
                 <div
                   key={index}
-                  className="bg-color-secondary px-3 py-2 rounded-lg text-center"
+                  className="bg-color-surface-alt px-3 py-2 rounded-lg text-center"
                 >
                   <span className="font-family-secondary text-xs md:text-sm font-medium text-color-primary">
                     {caracteristica}

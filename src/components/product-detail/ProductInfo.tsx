@@ -16,20 +16,20 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       <nav className="flex items-center gap-2 text-sm">
         <Link
           href="/"
-          className="font-family-secondary text-color-secondary hover:text-color-primary transition-colors"
+          className="font-family-secondary text-color-muted hover:text-color-primary transition-colors"
         >
           Home
         </Link>
-        <span className="text-color-secondary">/</span>
+        <span className="text-color-muted">/</span>
         <Link
           href="/produtos"
-          className="font-family-secondary text-color-secondary hover:text-color-primary transition-colors"
+          className="font-family-secondary text-color-muted hover:text-color-primary transition-colors"
         >
           Produtos
         </Link>
         {category && (
           <>
-            <span className="text-color-secondary">/</span>
+            <span className="text-color-muted">/</span>
             <span className="font-family-secondary text-color-primary">
               {category.nome}
             </span>
@@ -43,7 +43,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           {product.nome}
         </h1>
         {category && (
-          <p className="font-family-secondary text-lg text-color-secondary">
+          <p className="font-family-secondary text-lg text-color-muted">
             Categoria: {category.nome}
           </p>
         )}
@@ -63,7 +63,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       <div>
         <Link
           href="/produtos"
-          className="inline-flex items-center gap-2 bg-color-primary text-color-quaternary font-family-accent font-semibold px-6 py-3 rounded-lg hover:bg-color-primary/90 transition-colors duration-300"
+          className="inline-flex items-center gap-2 bg-color-primary text-color-white font-family-accent font-semibold px-6 py-3 rounded-lg hover:bg-color-primary/90 transition-colors duration-300"
         >
           <ArrowLeft size={20} />
           Voltar para Produtos

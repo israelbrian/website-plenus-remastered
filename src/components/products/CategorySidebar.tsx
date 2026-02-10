@@ -20,7 +20,7 @@ export default function CategorySidebar({
   }, []);
 
   return (
-    <aside className="bg-color-quaternary rounded-lg p-4 shadow-md">
+    <aside className="bg-color-white rounded-lg p-4 shadow-md">
       <h3 className="font-family-primary text-xl font-bold text-color-primary mb-4">
         Categorias
       </h3>
@@ -30,8 +30,8 @@ export default function CategorySidebar({
             onClick={() => onCategorySelect(null)}
             className={`w-full text-left px-4 py-2 rounded-lg transition-colors font-family-secondary ${
               selectedCategory === null
-                ? 'bg-color-primary text-color-quaternary font-semibold'
-                : 'bg-color-secondary text-color-primary hover:bg-color-tertiary'
+                ? 'bg-color-primary text-color-white font-semibold'
+                : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
             }`}
           >
             Todas
@@ -43,8 +43,8 @@ export default function CategorySidebar({
               onClick={() => onCategorySelect(category.slug)}
               className={`w-full text-left px-4 py-2 rounded-lg transition-colors font-family-secondary ${
                 selectedCategory === category.slug
-                  ? 'bg-color-primary text-color-quaternary font-semibold'
-                  : 'bg-color-secondary text-color-primary hover:bg-color-tertiary'
+                  ? 'bg-color-primary text-color-white font-semibold'
+                  : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
               }`}
             >
               {category.nome}

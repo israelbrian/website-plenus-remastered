@@ -14,10 +14,10 @@ export default function HeroSection() {
       />
       <div className="absolute inset-0 z-20 flex items-center justify-center">
         <div className="text-center px-4">
-          <h2 className="font-family-primary text-4xl md:text-5xl lg:text-6xl font-bold text-color-quaternary mb-4">
+          <h2 className="font-family-primary text-4xl md:text-5xl lg:text-6xl font-bold text-color-white mb-4">
             Móveis Planejados
           </h2>
-          <p className="font-family-secondary text-lg md:text-xl text-color-quaternary">
+          <p className="font-family-secondary text-lg md:text-xl text-color-white">
             Qualidade e design para transformar seu espaço
           </p>
         </div>

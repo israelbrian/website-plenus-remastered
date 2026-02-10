@@ -4,11 +4,11 @@
 
 @layer base {
   * {
-    @apply border-color-tertiary;
+    @apply border-color-border;
   }
   
   body {
-    @apply bg-color-secondary text-color-primary;
+    @apply bg-color-surface text-color-primary;
   }
 }
 

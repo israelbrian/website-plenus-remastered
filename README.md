@@ -65,34 +65,82 @@ website-plenus-remastered/
 
 **Princípio:** Qualquer alteração de cor, fonte ou estilo deve ser feita apenas no `tailwind.config.js`, sem necessidade de modificar componentes individuais.
 
+### Paleta de cores
+
+Design system em tons de bege, dourado, preto e branco. As definições e o comentário de referência ficam no `tailwind.config.js`:
+
+| Token | Hex | Uso sugerido |
+|-------|-----|----------------|
+| `color-white` | #ffffff | Fundos claros, texto em fundo escuro |
+| `color-black` | #000000 | Preto puro |
+| `color-beige-50` | #ede8d0 | Fundo principal (surface) |
+| `color-beige-100` | #c4c0ab | Fundos suaves (surface-alt) |
+| `color-beige-200` | #9d9988 | Bordas (border) |
+| `color-beige-300` | #777567 | Texto secundário |
+| `color-beige-400` | #545248 | Texto/UI médio (muted) |
+| `color-beige-500` | #4f4d46 | Fundos escuros (ex.: header) |
+| `color-beige-600` | #33312b | Texto/UI escuro |
+| `color-beige-900` | #141410 | Fundos e texto principais (primary) |
+| `color-gold` | #d4c990 | Destaques, botões (accent) |
+
+#### Aliases semânticos (manutenção centralizada)
+
+Os aliases apontam para tokens da escala acima. Use-os no dia a dia; para mudar o visual do site, altere apenas o valor no `tailwind.config.js`.
+
+- **`color-primary`** (#141410)  
+  Texto principal, títulos, botões primários, footer e header escuros. Ex.: `text-color-primary`, `bg-color-primary`, botões “Ver Móveis Planejados”, “Voltar para Produtos”, overlay do hero.
+
+- **`color-surface`** (#ede8d0)  
+  Fundo principal da página (body e área de conteúdo). Ex.: `bg-color-surface` no `main` e no `body` (globals.css).
+
+- **`color-surface-alt`** (#c4c0ab)  
+  Fundos alternados e áreas destacadas: seções (ex.: “Produtos em Destaque”), chips do header, placeholders de galeria, cards de categoria (estado não selecionado). Ex.: `bg-color-surface-alt`.
+
+- **`color-muted`** (#545248)  
+  Texto secundário, descrições, breadcrumbs, ícones e mensagens de apoio. Ex.: `text-color-muted` em parágrafos, “Categoria: …”, “Nenhum produto encontrado”, ícone da busca.
+
+- **`color-border`** (#9d9988)  
+  Bordas e divisórias: borda do header, input de busca, thumbnails da galeria (hover), botões da sidebar (hover). Ex.: `border-color-border`, `hover:bg-color-border`.
+
+- **`color-accent`** (#d4c990, mesmo que `color-gold`)  
+  Destaques e CTAs (botões de ação, links importantes). Use quando quiser ênfase visual além do primary. Ex.: futuros botões “Comprar” ou links de destaque.
+
+- **`color-white`** (#ffffff)  
+  Fundos de cards, inputs e seções claras; texto sobre fundos escuros (título do header, texto do footer, botões primários). Ex.: `bg-color-white`, `text-color-white`.
+
+- **`color-black`** (#000000)  
+  Preto puro, quando for necessário contraste máximo (ex.: logos ou elementos específicos).
+
+**Uso nos componentes:** prefira os aliases semânticos (`color-primary`, `color-surface`, `color-muted`, etc.) para manter significado e manutenção; use a escala numérica (`color-beige-500`, etc.) quando precisar de um tom específico (ex.: header com `bg-color-beige-500`).
+
 ### Nomenclatura de Cores - Background
 
-Padrão de nomenclatura para cores de fundo:
+Padrão com a nova paleta (use os tokens da tabela acima):
 
-- `bg-color-primary` - Cor primária de fundo
-- `bg-color-secondary` - Cor secundária de fundo
-- `bg-color-tertiary` - Cor terciária de fundo
-- `bg-color-quaternary` - Cor quaternária de fundo
+- `bg-color-primary` – Fundo escuro (footer, botões)
+- `bg-color-surface` – Fundo principal da página
+- `bg-color-surface-alt` – Fundos alternados (seções, chips)
+- `bg-color-white` – Fundos de cards e inputs
+- `bg-color-beige-500` – Fundos escuros (ex.: header)
 
 **Uso nos componentes:**
 ```tsx
-<div className="bg-color-primary">
-<div className="bg-color-secondary">
+<main className="bg-color-surface">
+<footer className="bg-color-primary">
+<aside className="bg-color-white">
 ```
 
 ### Nomenclatura de Cores - Texto
 
-Padrão de nomenclatura para cores de texto (podem ser diferentes das cores de background):
-
-- `text-color-primary` - Cor primária de texto
-- `text-color-secondary` - Cor secundária de texto
-- `text-color-tertiary` - Cor terciária de texto
-- `text-color-quaternary` - Cor quaternária de texto
+- `text-color-primary` – Texto principal e títulos
+- `text-color-muted` – Texto secundário e descrições
+- `text-color-white` – Texto em fundos escuros (header, footer, botões)
 
 **Uso nos componentes:**
 ```tsx
 <h1 className="text-color-primary">
-<p className="text-color-secondary">
+<p className="text-color-muted">
+<span className="text-color-white">
 ```
 
 ### Nomenclatura de Fontes

@@ -29,8 +29,8 @@ export default function ProductGallery({
 
   if (images.length === 0) {
     return (
-      <div className="w-full h-96 bg-color-tertiary rounded-lg flex items-center justify-center">
-        <p className="font-family-secondary text-color-secondary">
+      <div className="w-full h-96 bg-color-surface-alt rounded-lg flex items-center justify-center">
+        <p className="font-family-secondary text-color-muted">
           Sem imagens disponíveis
         </p>
       </div>
@@ -40,7 +40,7 @@ export default function ProductGallery({
   return (
     <div className="space-y-4">
       {/* Imagem Principal */}
-      <div className="relative w-full h-96 md:h-[500px] rounded-lg overflow-hidden bg-color-tertiary">
+      <div className="relative w-full h-96 md:h-[500px] rounded-lg overflow-hidden bg-color-surface-alt">
         <Image
           src={images[currentImageIndex]}
           alt={`${productName} - Imagem ${currentImageIndex + 1}`}
@@ -52,14 +52,14 @@ export default function ProductGallery({
           <>
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-color-primary/80 text-color-quaternary p-2 rounded-full hover:bg-color-primary transition-colors"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-color-primary/80 text-color-white p-2 rounded-full hover:bg-color-primary transition-colors"
               aria-label="Imagem anterior"
             >
               <ChevronLeft size={24} />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-color-primary/80 text-color-quaternary p-2 rounded-full hover:bg-color-primary transition-colors"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-color-primary/80 text-color-white p-2 rounded-full hover:bg-color-primary transition-colors"
               aria-label="Próxima imagem"
             >
               <ChevronRight size={24} />
@@ -78,7 +78,7 @@ export default function ProductGallery({
               className={`relative w-full h-20 md:h-24 rounded-lg overflow-hidden border-2 transition-all ${
                 currentImageIndex === index
                   ? 'border-color-primary'
-                  : 'border-transparent hover:border-color-tertiary'
+                  : 'border-transparent hover:border-color-border'
               }`}
             >
               <Image
