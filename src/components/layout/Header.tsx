@@ -1,42 +1,38 @@
-export default function Header() {
-  const caracteristicas = [
-    '100% MDF',
-    'Decoração',
-    'Projetos',
-    'Junco Sintético',
-    'Junco Natural',
-    'Rústicos',
-    'Estofamento',
-    'Garantia',
-    'Pontualidade',
-  ];
+import Link from 'next/link';
 
+const NAV_ITEMS = [
+  { label: 'Página Inicial', href: '/' },
+  { label: 'Produtos', href: '/produtos' },
+  { label: 'Contato', href: '/#contato' },
+] as const;
+
+export default function Header() {
   return (
     <header className="bg-color-beige-500 border-b border-color-border">
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="container mx-auto px-4 py-4 md:py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Logo/Título */}
-          <div className="text-center md:text-left">
-            <h1 className="font-family-primary text-3xl md:text-4xl font-bold text-color-white">
+          <div className="text-center sm:text-left">
+            <Link href="/" className="font-family-primary text-2xl sm:text-3xl md:text-4xl font-bold text-color-white hover:text-color-accent transition-colors duration-200">
               Plenus Planejados
-            </h1>
+            </Link>
           </div>
 
-          {/* Grid de Características */}
-          <div className="w-full md:w-auto">
-            <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-3">
-              {caracteristicas.map((caracteristica, index) => (
-                <div
-                  key={index}
-                  className="bg-color-surface-alt px-3 py-2 rounded-lg text-center"
-                >
-                  <span className="font-family-secondary text-xs md:text-sm font-medium text-color-primary">
-                    {caracteristica}
-                  </span>
-                </div>
+          {/* Navegação – em mobile: linha única (estilo breadcrumb); em desktop: menu horizontal */}
+          <nav aria-label="Menu principal" className="w-full sm:w-auto">
+            <ul className="flex flex-wrap items-center justify-center sm:justify-end gap-2 md:gap-3">
+              {NAV_ITEMS.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="font-family-secondary text-sm md:text-base font-medium text-color-white bg-color-surface-alt/80 px-3 py-2 rounded-lg text-center block transition-all duration-200 hover:bg-color-accent hover:text-color-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-color-accent focus:ring-offset-2 focus:ring-offset-color-beige-500"
+                  >
+                    {label}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>
