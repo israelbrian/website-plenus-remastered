@@ -14,7 +14,7 @@ export default function FeaturedProducts() {
   }, []);
 
   return (
-    <section className="py-12 md:py-16 bg-color-surface-alt">
+    <section className="py-12 md:py-16 bg-color-surface">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="font-family-primary text-3xl md:text-4xl font-bold text-color-primary mb-4">

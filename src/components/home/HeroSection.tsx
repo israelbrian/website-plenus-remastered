@@ -4,7 +4,7 @@ import armario from '../../public/images/produtos/armario.jpg';
 export default function HeroSection() {
   return (
     <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
-      <div className="absolute inset-0 bg-color-surface-alt z-10" />
+      <div className="absolute inset-0 bg-color-surface z-10" />
       <Image
         src="{armario}"
         alt="Plenus Planejados - Móveis Planejados"
