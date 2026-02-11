@@ -1,18 +1,20 @@
 import Image from 'next/image';
-import armario from '../../public/images/produtos/armario.jpg';
+
+const HERO_IMAGE_PATH = '/images/produtos/armario.jpg';
 
 export default function HeroSection() {
   return (
     <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
-      <div className="absolute inset-0 bg-color-surface z-10" />
       <Image
-        src="{armario}"
+        src={HERO_IMAGE_PATH}
         alt="Plenus Planejados - Móveis Planejados"
         fill
-        className="object-cover"
+        className="object-cover z-0"
         priority
+        sizes="100vw"
       />
-      <div className="absolute inset-0 z-20 flex items-center justify-center">
+      <div className="absolute inset-0 z-10" aria-hidden />
+      {/* <div className="absolute inset-0 z-20 flex items-center justify-center">
         <div className="text-center px-4">
           <h2 className="font-family-primary text-4xl md:text-5xl lg:text-6xl font-bold text-color-white mb-4">
             Móveis Planejados
@@ -21,7 +23,8 @@ export default function HeroSection() {
             Qualidade e design para transformar seu espaço
           </p>
         </div>
-      </div>
+      </div> */}
+
     </section>
   );
 }

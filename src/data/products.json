@@ -5,11 +5,9 @@
       "nome": "Armário Planejado Moderno",
       "categoria": "armarios",
       "categoriaSlug": "armarios",
-      "imagemPrincipal": "/images/produtos/armarios/armario-01.jpg",
+      "imagemPrincipal": "/images/produtos/armario.jpg",
       "imagens": [
-        "/images/produtos/armarios/armario-01.jpg",
-        "/images/produtos/armarios/armario-02.jpg",
-        "/images/produtos/armarios/armario-03.jpg"
+        "/images/produtos/armario.jpg"
       ],
       "descricao": "Armário planejado em MDF com acabamento premium, ideal para quartos e áreas de armazenamento. Design moderno e funcional.",
       "destaque": true,
@@ -20,11 +18,9 @@
       "nome": "Armário Planejado Rustico",
       "categoria": "armarios",
       "categoriaSlug": "armarios",
-      "imagemPrincipal": "/images/produtos/armarios/armario-02.jpg",
+      "imagemPrincipal": "/images/produtos/armario.jpg",
       "imagens": [
-        "/images/produtos/armarios/armario-01.jpg",
-        "/images/produtos/armarios/armario-02.jpg",
-        "/images/produtos/armarios/armario-03.jpg"
+        "/images/produtos/armario.jpg"
       ],
       "descricao": "Armário planejado em MDF com acabamento premium, ideal para quartos e áreas de armazenamento. Design moderno e funcional.",
       "destaque": true,
@@ -35,10 +31,9 @@
       "nome": "Cozinha Planejada Completa",
       "categoria": "cozinha",
       "categoriaSlug": "cozinha",
-      "imagemPrincipal": "/images/produtos/cozinha/cozinha-01.jpg",
+      "imagemPrincipal": "/images/produtos/armario.jpg",
       "imagens": [
-        "/images/produtos/cozinha/cozinha-01.jpg",
-        "/images/produtos/cozinha/cozinha-02.jpg"
+        "/images/produtos/armario.jpg"
       ],
       "descricao": "Cozinha planejada completa com armários superiores e inferiores, ilha central e acabamento em MDF de alta qualidade.",
       "destaque": true,
@@ -49,10 +44,9 @@
       "nome": "Cama Planejada com Cabeceira",
       "categoria": "cama",
       "categoriaSlug": "cama",
-      "imagemPrincipal": "/images/produtos/cama/cama-01.jpg",
+      "imagemPrincipal": "/images/produtos/armario.jpg",
       "imagens": [
-        "/images/produtos/cama/cama-01.jpg",
-        "/images/produtos/cama/cama-02.jpg"
+        "/images/produtos/armario.jpg"
       ],
       "descricao": "Cama planejada com cabeceira integrada e gavetas embutidas. Perfeita para quartos modernos e funcionais.",
       "destaque": true,
