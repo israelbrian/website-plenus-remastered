@@ -13,7 +13,7 @@ export default function Header() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Logo/Título */}
           <div className="text-center sm:text-left">
-            <Link href="/" className="font-family-primary text-2xl sm:text-3xl md:text-4xl font-bold text-color-white hover:text-color-accent transition-colors duration-200">
+            <Link href="/" className="font-family-primary text-2xl sm:text-3xl md:text-5xl font-bold text-color-white hover:text-color-accent transition-colors duration-200">
               Plenus Planejados
             </Link>
           </div>
@@ -25,7 +25,7 @@ export default function Header() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="font-family-secondary text-sm md:text-base font-medium text-color-white bg-color-surface-alt/80 px-3 py-2 rounded-lg text-center block transition-all duration-200 hover:bg-color-accent hover:text-color-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-color-accent focus:ring-offset-2 focus:ring-offset-color-beige-500"
+                    className="font-family-secondary text-sm md:text-base font-medium text-color-beige-400 bg-color-surface px-3 py-2 rounded-lg text-center block transition-all duration-200 hover:bg-color-accent hover:text-color-primary hover:scale-105 focus:outline-none focus:ring-1 focus:ring-color-surface focus:ring-offset-2 focus:ring-offset-color-beige-500"
                   >
                     {label}
                   </Link>
