@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Instagram, MessageCircle, Menu, X } from 'lucide-react';
+import { MessageCircle, Menu, X } from 'lucide-react';
+import InstagramIcon from '@/components/icons/InstagramIcon';
 import { useState } from 'react';
 
 const NAV_ITEMS = [
@@ -12,7 +13,7 @@ const NAV_ITEMS = [
 ] as const;
 
 const SOCIAL_LINKS = [
-  { href: 'https://instagram.com/plenusplanejados', label: 'Instagram', icon: Instagram },
+  { href: 'https://instagram.com/plenusplanejados', label: 'Instagram', icon: InstagramIcon },
   { href: 'https://wa.me/55319966407544', label: 'WhatsApp', icon: MessageCircle },
 ] as const;
 

@@ -1,5 +1,6 @@
-import { Instagram, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
+import InstagramIcon from '@/components/icons/InstagramIcon';
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
           {/* Endereço */}
           <div className="text-center">
             <p className="font-family-secondary text-sm md:text-base">
-              Avenida Érico Veríssimo, 1.369 - Santa Mônica - Belo Horizonte /
+              Avenida Érico Veríssimo 1369 - Santa Mônica - Belo Horizonte /
               MG
             </p>
           </div>
@@ -21,10 +22,10 @@ export default function Footer() {
               href="https://instagram.com/plenusplanejados"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 hover:text-color-accent transition-opacity"
               aria-label="Instagram"
             >
-              <Instagram size={24} />
+              <InstagramIcon size={24} />
               <span className="font-family-secondary text-sm">
                 @plenusplanejados
               </span>
@@ -35,7 +36,7 @@ export default function Footer() {
               href="https://wa.me/55319966407544"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 hover:text-color-accent transition-opacity"
               aria-label="WhatsApp"
             >
               <Phone size={24} />
@@ -47,7 +48,7 @@ export default function Footer() {
             {/* Email */}
             <Link
               href="mailto:vendas@plenusplanejados.com.br"
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 hover:text-color-accent transition-opacity"
               aria-label="Email"
             >
               <Mail size={24} />

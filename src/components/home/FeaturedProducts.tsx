@@ -36,7 +36,7 @@ export default function FeaturedProducts() {
         <div className="text-center">
           <Link
             href="/produtos"
-            className="inline-block bg-color-primary text-color-white font-family-accent font-semibold px-8 py-3 rounded-lg hover:bg-color-primary/90 transition-colors duration-300"
+            className="inline-block bg-color-primary text-color-white font-family-accent font-semibold px-8 py-3 rounded-lg hover:bg-color-beige-300 transition-colors duration-300"
           >
             Ver Móveis Planejados
           </Link>
