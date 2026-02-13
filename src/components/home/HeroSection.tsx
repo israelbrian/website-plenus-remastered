@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const HERO_IMAGE_PATH = '/images/produtos/armario.jpg';
+const HERO_IMAGE_PATH = '/images/produtos/cozinha-planejada.jpg';
 
 export default function HeroSection() {
   return (
