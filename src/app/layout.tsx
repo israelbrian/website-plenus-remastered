@@ -1,6 +1,69 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Layout from '@/components/layout/Layout';
+import {
+  Montserrat,
+  Playfair_Display,
+  Oswald,
+  Great_Vibes,
+  Dancing_Script,
+  Alex_Brush,
+  UnifrakturMaguntia,
+  Pirata_One,
+} from 'next/font/google';
+
+// Configuração das fontes
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  variable: '--font-oswald',
+  display: 'swap',
+});
+
+const greatVibes = Great_Vibes({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-great-vibes',
+  display: 'swap',
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ['latin'],
+  variable: '--font-dancing-script',
+  display: 'swap',
+});
+
+const alexBrush = Alex_Brush({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-alex-brush',
+  display: 'swap',
+});
+
+const unifraktur = UnifrakturMaguntia({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-unifraktur',
+  display: 'swap',
+});
+
+const pirataOne = Pirata_One({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-pirata',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -37,7 +100,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="font-family-secondary antialiased">
+      <body
+        className={`${montserrat.variable} ${playfair.variable} ${oswald.variable} ${greatVibes.variable} ${dancingScript.variable} ${alexBrush.variable} ${unifraktur.variable} ${pirataOne.variable} font-family-body antialiased`}
+      >
         <Layout>{children}</Layout>
       </body>
     </html>

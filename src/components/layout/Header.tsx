@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { MessageCircle, Menu, X } from 'lucide-react';
+import { ChatBubbleLeftRightIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 import { useState } from 'react';
 
@@ -14,7 +14,7 @@ const NAV_ITEMS = [
 
 const SOCIAL_LINKS = [
   { href: 'https://instagram.com/plenusplanejados', label: 'Instagram', icon: InstagramIcon },
-  { href: 'https://wa.me/55319966407544', label: 'WhatsApp', icon: MessageCircle },
+  { href: 'https://wa.me/55319966407544', label: 'WhatsApp', icon: ChatBubbleLeftRightIcon },
 ] as const;
 
 export default function Header() {
@@ -36,14 +36,14 @@ export default function Header() {
                 className="text-color-white hover:text-color-accent transition-colors duration-200"
                 aria-label={label}
               >
-                <Icon size={22} />
+                <Icon className="w-[22px] h-[22px]" />
               </Link>
             ))}
           </div>
 
           <Link
             href="/"
-            className="font-family-primary text-center text-xl sm:text-2xl md:text-4xl 2xl:text-5xl font-bold text-color-white hover:text-color-accent transition-colors duration-200 justify-self-center"
+            className="font-family-title text-center text-xl sm:text-2xl md:text-4xl 2xl:text-5xl font-bold uppercase tracking-widest text-color-white hover:text-color-accent transition-colors duration-200 justify-self-center"
           >
             Plenus Planejados
           </Link>
@@ -57,7 +57,7 @@ export default function Header() {
               aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {menuOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -112,10 +112,10 @@ export default function Header() {
       {/* Bloco título + subtítulo – ocupa mais espaço no header (como na referência) */}
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="text-center">
-          <p className="font-family-secondary text-color-white/90 text-xs md:text-sm uppercase tracking-widest mb-2">
+          <p className="font-family-accent text-color-white/90 text-2xl md:text-3xl mb-2">
             Qualidade e design para
           </p>
-          <h2 className="font-family-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-color-white tracking-tight">
+          <h2 className="font-family-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-widest text-color-white">
             Transformar seu espaço
           </h2>
         </div>

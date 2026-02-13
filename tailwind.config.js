@@ -46,9 +46,25 @@ module.exports = {
       },
       // Famílias de Fontes
       fontFamily: {
+        // Semânticas
+        'family-title': ['var(--font-montserrat)', 'sans-serif'],
+        'family-body': ['var(--font-montserrat)', 'sans-serif'],
+        'family-accent': ['var(--font-great-vibes)', 'cursive'],
+        'family-highlight': ['var(--font-unifraktur)', 'serif'],
+        // Opções para teste (Sólidas)
+        'family-solid-1': ['var(--font-montserrat)', 'sans-serif'],
+        'family-solid-2': ['var(--font-playfair)', 'serif'],
+        'family-solid-3': ['var(--font-oswald)', 'sans-serif'],
+        // Opções para teste (Delicadas)
+        'family-delicate-1': ['var(--font-great-vibes)', 'cursive'],
+        'family-delicate-2': ['var(--font-dancing-script)', 'cursive'],
+        'family-delicate-3': ['var(--font-alex-brush)', 'cursive'],
+        // Opções para teste (Góticas)
+        'family-gothic-1': ['var(--font-unifraktur)', 'serif'],
+        'family-gothic-2': ['var(--font-pirata)', 'serif'],
+        // Fallback/System
         'family-primary': ['Inter', 'system-ui', 'sans-serif'],
         'family-secondary': ['Inter', 'system-ui', 'sans-serif'],
-        'family-accent': ['Inter', 'system-ui', 'sans-serif'],
       },
       // Outras customizações
       spacing: {

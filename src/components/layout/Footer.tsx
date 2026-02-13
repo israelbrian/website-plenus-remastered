@@ -1,4 +1,4 @@
-import { Mail, Phone } from 'lucide-react';
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 
@@ -25,7 +25,7 @@ export default function Footer() {
               className="flex items-center gap-2 hover:text-color-accent transition-opacity"
               aria-label="Instagram"
             >
-              <InstagramIcon size={24} />
+              <InstagramIcon className="w-6 h-6" />
               <span className="font-family-secondary text-sm">
                 @plenusplanejados
               </span>
@@ -39,7 +39,7 @@ export default function Footer() {
               className="flex items-center gap-2 hover:text-color-accent transition-opacity"
               aria-label="WhatsApp"
             >
-              <Phone size={24} />
+              <PhoneIcon className="w-6 h-6" />
               <span className="font-family-secondary text-sm">
                 (31) 99664-07544
               </span>
@@ -51,7 +51,7 @@ export default function Footer() {
               className="flex items-center gap-2 hover:text-color-accent transition-opacity"
               aria-label="Email"
             >
-              <Mail size={24} />
+              <EnvelopeIcon className="w-6 h-6" />
               <span className="font-family-secondary text-sm">
                 vendas@plenusplanejados.com.br
               </span>
