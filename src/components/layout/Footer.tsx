@@ -140,11 +140,11 @@ export default function Footer() {
         </div>
 
         {/* Rodapé inferior / Copyright */}
-        <div className="border-t border-color-beige-600/30 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-family-body text-color-beige-400">
+        <div className="text-color-beige-300 border-t border-color-beige-600/30 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-family-body">
           <p>© {currentYear} Plenus Planejados. Todos os direitos reservados.</p>
           <div className="flex gap-2">
-            <span className="hover:text-color-white cursor-pointer transition-colors">Desenvolvido por</span>
-            <span className="hover:text-color-white cursor-pointer transition-colors">Israel Brian </span>
+            <span className="text-color-beige-300 transition-colors">Desenvolvido por</span>
+            <span className="text-color-beige-100 hover:text-color-white cursor-pointer transition-colors">Israel Brian Dev</span>
           </div>
         </div>
       </div>
