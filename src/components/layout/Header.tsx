@@ -76,7 +76,7 @@ export default function Header() {
                   <Link
                     href={href}
                     className={`font-bold tracking-widest font-family-solid-2 text-xs lg:text-sm uppercase tracking-wide py-2 transition-all duration-200 hover:text-color-beige-50 hover:scale-105 ${
-                      isActive ? 'is-active text-color-beige-200 font-semibold' : 'text-color-accent'
+                      isActive ? 'is-active text-color-beige-100 font-semibold' : 'text-color-accent'
                     }`}
                   >
                     {label}
