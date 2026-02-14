@@ -24,8 +24,8 @@ export default function Header() {
   return (
     <header className="bg-color-beige-500 border-b border-color-border">
       {/* Barra superior: redes à esquerda, título ao centro, hamburger à direita só no mobile */}
-      <div className="container mx-auto px-4 pt-4 pb-2">
-        <div className="grid grid-cols-3 items-center gap-2">
+      <div className="container mx-auto px-4 pt-6 pb-4">
+        <div className="grid grid-cols-[1fr_4fr_1fr] items-center gap-4">
           <div className="flex items-center gap-3">
             {SOCIAL_LINKS.map(({ href, label, icon: Icon }) => (
               <Link
@@ -43,7 +43,7 @@ export default function Header() {
 
           <Link
             href="/"
-            className="font-family-title text-color-beige-50 text-center text-xl sm:text-2xl md:text-4xl 2xl:text-4xl font-bold uppercase tracking-widest hover:text-color-accent transition-colors duration-300 justify-self-center"
+            className="font-family-title text-color-beige-50 text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold uppercase tracking-widest hover:text-color-accent transition-colors duration-300 justify-self-center whitespace-nowrap"
           >
             Plenus Planejados
           </Link>
@@ -57,7 +57,7 @@ export default function Header() {
               aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
+              {menuOpen ? <XMarkIcon className="w-8 h-8" /> : <Bars3Icon className="w-8 h-8" />}
             </button>
           </div>
 
@@ -75,7 +75,7 @@ export default function Header() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className={`text-color-beige-50 font-bold tracking-widest font-family-solid-2 text-sm uppercase tracking-wide py-2 transition-all duration-200 hover:text-color-accent hover:scale-105 ${
+                    className={`text-color-beige-50 font-bold tracking-widest font-family-solid-2 text-xs lg:text-sm uppercase tracking-wide py-2 transition-all duration-200 hover:text-color-accent hover:scale-105 ${
                       isActive ? 'is-active text-color-beige-200 font-semibold' : 'text-color-white'
                     }`}
                   >
@@ -111,7 +111,8 @@ export default function Header() {
       </nav>
 
       {/* Bloco título + subtítulo – ocupa mais espaço no header (como na referência) */}
-      <div className="container mx-auto px-4 py-8 md:py-12">
+      {/* ALTERAÇÃO: Padding vertical (py-16 md:py-20) para aumentar a altura do header */}
+      <div className="container mx-auto px-4 py-16 md:py-20">
         <div className="text-center">
           <p className="font-family-solid-2 text-color-white/90 text-2xl md:text-3xl mb-2">
             Qualidade e design para
