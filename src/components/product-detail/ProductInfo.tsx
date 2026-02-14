@@ -16,21 +16,21 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       <nav className="flex items-center gap-2 text-sm">
         <Link
           href="/"
-          className="font-family-secondary text-color-muted hover:text-color-primary transition-colors"
+          className="font-family-body text-color-muted hover:text-color-primary transition-colors"
         >
           Home
         </Link>
         <span className="text-color-muted">/</span>
         <Link
           href="/produtos"
-          className="font-family-secondary text-color-muted hover:text-color-primary transition-colors"
+          className="font-family-body text-color-muted hover:text-color-primary transition-colors"
         >
           Produtos
         </Link>
         {category && (
           <>
             <span className="text-color-muted">/</span>
-            <span className="font-family-secondary text-color-primary">
+            <span className="font-family-body text-color-primary">
               {category.nome}
             </span>
           </>
@@ -43,7 +43,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           {product.nome}
         </h1>
         {category && (
-          <p className="font-family-secondary text-lg text-color-muted">
+          <p className="font-family-body text-lg text-color-muted">
             Categoria: {category.nome}
           </p>
         )}
@@ -54,7 +54,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <h2 className="font-family-primary text-xl font-semibold text-color-primary mb-3">
           Descrição
         </h2>
-        <p className="font-family-secondary text-base text-color-primary leading-relaxed">
+        <p className="font-family-body text-base text-color-primary leading-relaxed">
           {product.descricao}
         </p>
       </div>
