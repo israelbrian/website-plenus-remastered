@@ -21,10 +21,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
       </div>
       <div className="p-4">
-        <h3 className="font-family-primary text-lg font-semibold text-color-primary mb-2 group-hover:text-color-primary/80 transition-colors">
+        <h3 className="font-family-title text-lg font-medium text-color-primary mb-2 group-hover:text-color-primary/80 transition-colors">
           {product.nome}
         </h3>
-        <p className="font-family-secondary text-sm text-color-muted line-clamp-2">
+        <p className="font-family-body text-sm text-color-muted line-clamp-2">
           {product.descricao}
         </p>
       </div>
