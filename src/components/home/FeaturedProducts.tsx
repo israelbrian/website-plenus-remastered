@@ -17,10 +17,10 @@ export default function FeaturedProducts() {
     <section className="py-12 md:py-16 bg-color-surface">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="font-family-primary text-3xl md:text-4xl font-bold text-color-primary mb-4">
+          <h2 className="font-family-solid-2 text-3xl md:text-4xl font-semibold text-color-primary mb-4">
             Produtos em Destaque
           </h2>
-          <p className="font-family-secondary text-base md:text-lg text-color-muted">
+          <p className="font-family-body text-base md:text-lg text-color-muted">
             Conheça alguns dos nossos melhores produtos
           </p>
         </div>
@@ -36,7 +36,7 @@ export default function FeaturedProducts() {
         <div className="text-center">
           <Link
             href="/produtos"
-            className="inline-block bg-color-primary text-color-white font-family-accent font-semibold px-8 py-3 rounded-lg hover:bg-color-beige-300 transition-colors duration-300"
+            className="inline-block bg-color-primary text-color-white font-family-solid-2 font-bold uppercase px-8 py-3 rounded-lg hover:bg-color-accent transition-colors duration-300"
           >
             Ver Móveis Planejados
           </Link>

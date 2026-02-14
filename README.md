@@ -143,6 +143,25 @@ Padrão com a nova paleta (use os tokens da tabela acima):
 <span className="text-color-white">
 ```
 
+**Tamanhos de Fonte (Scale):**
+- `text-xs` - Extra pequeno (0.75rem / 12px)
+- `text-sm` - Pequeno (0.875rem / 14px)
+- `text-base` - Base (1rem / 16px)
+- `text-lg` - Grande (1.125rem / 18px)
+- `text-xl` - Extra grande (1.25rem / 20px)
+- `text-2xl` - 2x grande (1.5rem / 24px)
+- `text-3xl` - 3x grande (1.875rem / 30px)
+- `text-4xl` - 4x grande (2.25rem / 36px)
+- `text-5xl` - 5x grande (3rem / 48px)
+
+**Pesos de Fonte:**
+- `font-light` - 300
+- `font-normal` - 400
+- `font-medium` - 500
+- `font-semibold` - 600
+- `font-bold` - 700
+- `font-extrabold` - 800
+
 ### Nomenclatura de Fontes
 
 O sistema tipográfico foi desenhado para transmitir robustez e elegância, com opções flexíveis para testes.
