@@ -43,7 +43,7 @@ export default function Header() {
 
           <Link
             href="/"
-            className="font-family-title text-color-beige-50 text-center text-xl sm:text-2xl md:text-4xl 2xl:text-4xl font-bold uppercase tracking-widest hover:text-color-white transition-colors duration-300 justify-self-center"
+            className="font-family-title text-color-beige-50 text-center text-xl sm:text-2xl md:text-4xl 2xl:text-4xl font-bold uppercase tracking-widest hover:text-color-accent transition-colors duration-300 justify-self-center"
           >
             Plenus Planejados
           </Link>
