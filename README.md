@@ -145,36 +145,39 @@ Padrão com a nova paleta (use os tokens da tabela acima):
 
 ### Nomenclatura de Fontes
 
-Seguindo boas práticas de desenvolvimento web:
+O sistema tipográfico foi desenhado para transmitir robustez e elegância, com opções flexíveis para testes.
 
-**Famílias de Fontes:**
-- `font-family-primary` - Fonte principal (headings, títulos)
-- `font-family-secondary` - Fonte secundária (corpo de texto, parágrafos)
-- `font-family-accent` - Fonte de destaque (botões, CTAs, destaques)
+**Famílias Semânticas (Recomendado):**
+Use estas classes no dia a dia. Elas mapeiam para as variáveis CSS definidas no `layout.tsx` e configuradas no `tailwind.config.js`.
 
-**Tamanhos de Fonte (Scale):**
-- `text-xs` - Extra pequeno (0.75rem / 12px)
-- `text-sm` - Pequeno (0.875rem / 14px)
-- `text-base` - Base (1rem / 16px)
-- `text-lg` - Grande (1.125rem / 18px)
-- `text-xl` - Extra grande (1.25rem / 20px)
-- `text-2xl` - 2x grande (1.5rem / 24px)
-- `text-3xl` - 3x grande (1.875rem / 30px)
-- `text-4xl` - 4x grande (2.25rem / 36px)
-- `text-5xl` - 5x grande (3rem / 48px)
+| Token | Fonte Padrão | Uso Sugerido |
+|-------|-------------|--------------|
+| `font-family-title` | **Montserrat** | Títulos principais, headers, chamadas de impacto (Geralmente Bold + Uppercase). |
+| `font-family-body` | **Montserrat** | Textos corridos, parágrafos, informações técnicas, menus. |
+| `font-family-accent` | **Great Vibes** | Subtítulos elegantes, assinaturas, detalhes manuais ("Qualidade e design"). |
+| `font-family-highlight` | **UnifrakturMaguntia** | Destaques góticos/diferenciados (uso específico para campanhas ou detalhes). |
 
-**Pesos de Fonte:**
-- `font-light` - 300
-- `font-normal` - 400
-- `font-medium` - 500
-- `font-semibold` - 600
-- `font-bold` - 700
-- `font-extrabold` - 800
+**Opções para Teste de Robustez (Design System):**
+Estas classes existem para validar se o layout suporta diferentes tipos de fontes.
+
+*   **Sólidas (Títulos):** `font-family-solid-1` (Montserrat), `font-family-solid-2` (Playfair Display), `font-family-solid-3` (Oswald).
+*   **Delicadas (Acentos):** `font-family-delicate-1` (Great Vibes), `font-family-delicate-2` (Dancing Script), `font-family-delicate-3` (Alex Brush).
+*   **Góticas (Destaque):** `font-family-gothic-1` (Unifraktur), `font-family-gothic-2` (Pirata One).
+
+**Como testar novas combinações:**
+Para mudar o visual do site todo, acesse `tailwind.config.js` e altere a definição de `family-title` ou `family-accent` para apontar para outra variável (ex: mudar de `var(--font-montserrat)` para `var(--font-playfair)`).
 
 **Uso nos componentes:**
 ```tsx
-<h1 className="font-family-primary text-4xl font-bold text-color-primary">
-<p className="font-family-secondary text-base font-normal text-color-secondary">
+{/* Título Robusto */}
+<h1 className="font-family-title text-4xl font-bold uppercase tracking-widest text-color-primary">
+  PLENUS PLANEJADOS
+</h1>
+
+{/* Subtítulo Elegante */}
+<p className="font-family-accent text-2xl text-color-accent">
+  Qualidade e design
+</p>
 ```
 
 ### Regras de Uso do Design System
