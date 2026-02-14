@@ -25,8 +25,8 @@ export default function Header() {
     <header className="bg-color-beige-500 border-b border-color-border">
       {/* Barra superior: redes à esquerda, título ao centro, hamburger à direita só no mobile */}
       <div className="container mx-auto px-4 pt-6 pb-4">
-        <div className="grid grid-cols-[1fr_4fr_1fr] items-center gap-4">
-          <div className="flex items-center gap-3">
+        <div className="flex justify-between items-center gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             {SOCIAL_LINKS.map(({ href, label, icon: Icon }) => (
               <Link
                 key={label}
@@ -36,28 +36,28 @@ export default function Header() {
                 className="text-color-white hover:text-color-accent transition-colors duration-200"
                 aria-label={label}
               >
-                <Icon className="w-[22px] h-[22px]" />
+                <Icon className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px]" />
               </Link>
             ))}
           </div>
 
           <Link
             href="/"
-            className="font-family-title text-color-accent text-center text-xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold uppercase tracking-widest hover:text-color-beige-50 transition-colors duration-300 justify-self-center whitespace-nowrap"
+            className="font-family-title text-color-accent text-center text-lg sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold uppercase tracking-widest hover:text-color-beige-50 transition-colors duration-300 mx-auto leading-tight"
           >
             Plenus Planejados
           </Link>
 
-            {/* Menu hamburguer mobile */}
-          <div className="flex justify-end">
+          {/* Menu hamburguer mobile */}
+          <div className="flex justify-end flex-shrink-0">
             <button
               type="button"
               onClick={() => setMenuOpen((o) => !o)}
-              className="md:hidden p-2 text-color-white hover:text-color-accent transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-color-accent"
+              className="md:hidden p-1 sm:p-2 text-color-white hover:text-color-accent transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-color-accent"
               aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <XMarkIcon className="w-8 h-8" /> : <Bars3Icon className="w-8 h-8" />}
+              {menuOpen ? <XMarkIcon className="w-6 h-6 sm:w-8 sm:h-8" /> : <Bars3Icon className="w-6 h-6 sm:w-8 sm:h-8" />}
             </button>
           </div>
 
@@ -75,9 +75,8 @@ export default function Header() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className={`font-bold tracking-widest font-family-solid-2 text-xs lg:text-sm uppercase tracking-wide py-2 transition-all duration-200 hover:text-color-beige-50 hover:scale-105 ${
-                      isActive ? 'is-active text-color-beige-100 font-semibold' : 'text-color-accent'
-                    }`}
+                    className={`font-bold tracking-widest font-family-solid-2 text-xs lg:text-sm uppercase tracking-wide py-2 transition-all duration-200 hover:text-color-beige-50 hover:scale-105 ${isActive ? 'is-active text-color-beige-100 font-semibold' : 'text-color-accent'
+                      }`}
                   >
                     {label}
                   </Link>
@@ -96,9 +95,8 @@ export default function Header() {
                     <Link
                       href={href}
                       onClick={() => setMenuOpen(false)}
-                      className={`font-family-secondary text-base py-3 px-4 block rounded-lg transition-all duration-200 hover:bg-color-beige-600 hover:text-color-accent ${
-                        isActive ? 'is-active bg-color-beige-600 text-color-accent font-semibold' : 'text-color-white'
-                      }`}
+                      className={`font-family-secondary text-base py-3 px-4 block rounded-lg transition-all duration-200 hover:bg-color-beige-600 hover:text-color-accent ${isActive ? 'is-active bg-color-beige-600 text-color-accent font-semibold' : 'text-color-white'
+                        }`}
                     >
                       {label}
                     </Link>

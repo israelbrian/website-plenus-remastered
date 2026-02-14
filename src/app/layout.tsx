@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Layout from '@/components/layout/Layout';
 import {
@@ -64,6 +64,14 @@ const pirataOne = Pirata_One({
   variable: '--font-pirata',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#ede8d0',
+};
 
 export const metadata: Metadata = {
   title: {
