@@ -19,7 +19,7 @@ export default function Footer() {
             <div className="w-32 h-auto rounded-lg overflow-hidden">
               {/* Ajuste de logo - background branco para contraste se o logo for escuro, ou transparente */}
               <Image
-                src="/images/logo/plenus-logo.png"
+                src="/images/logo/plenus-new-logo.jpeg"
                 alt="Plenus Planejados Logo"
                 width={150}
                 height={150}
