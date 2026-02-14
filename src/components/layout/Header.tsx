@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChatBubbleLeftRightIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import InstagramIcon from '@/components/icons/InstagramIcon';
+import WhatsAppIcon from '@/components/icons/WhatsAppIcon';
 import { useState } from 'react';
 
 const NAV_ITEMS = [
@@ -14,7 +15,7 @@ const NAV_ITEMS = [
 
 const SOCIAL_LINKS = [
   { href: 'https://instagram.com/plenusplanejados', label: 'Instagram', icon: InstagramIcon },
-  { href: 'https://wa.me/55319966407544', label: 'WhatsApp', icon: ChatBubbleLeftRightIcon },
+  { href: 'https://wa.me/55319966407544', label: 'WhatsApp', icon: WhatsAppIcon },
 ] as const;
 
 export default function Header() {
