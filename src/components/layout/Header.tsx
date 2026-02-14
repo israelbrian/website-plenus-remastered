@@ -43,7 +43,7 @@ export default function Header() {
 
           <Link
             href="/"
-            className="font-family-title text-color-beige-50 text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold uppercase tracking-widest hover:text-color-accent transition-colors duration-300 justify-self-center whitespace-nowrap"
+            className="font-family-title text-color-accent text-center text-xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold uppercase tracking-widest hover:text-color-beige-50 transition-colors duration-300 justify-self-center whitespace-nowrap"
           >
             Plenus Planejados
           </Link>
@@ -75,8 +75,8 @@ export default function Header() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className={`text-color-beige-50 font-bold tracking-widest font-family-solid-2 text-xs lg:text-sm uppercase tracking-wide py-2 transition-all duration-200 hover:text-color-accent hover:scale-105 ${
-                      isActive ? 'is-active text-color-beige-200 font-semibold' : 'text-color-white'
+                    className={`font-bold tracking-widest font-family-solid-2 text-xs lg:text-sm uppercase tracking-wide py-2 transition-all duration-200 hover:text-color-beige-50 hover:scale-105 ${
+                      isActive ? 'is-active text-color-beige-200 font-semibold' : 'text-color-accent'
                     }`}
                   >
                     {label}
@@ -112,12 +112,12 @@ export default function Header() {
 
       {/* Bloco título + subtítulo – ocupa mais espaço no header (como na referência) */}
       {/* ALTERAÇÃO: Padding vertical (py-16 md:py-20) para aumentar a altura do header */}
-      <div className="container mx-auto px-4 py-16 md:py-20">
+      <div className="container mx-auto px-4 py-16 md:py-10">
         <div className="text-center">
-          <p className="font-family-solid-2 text-color-white/90 text-2xl md:text-3xl mb-2">
+          <p className="font-family-solid-2 text-color-white/90 text-lg sm:text-2xl md:text-3xl mb-2">
             Qualidade e design para
           </p>
-          <h2 className="font-family-solid-1 text-2xl sm:text-3xl md:text-3xl font-bold uppercase tracking-widest text-color-white">
+          <h2 className="font-family-solid-1 text-base sm:text-3xl md:text-3xl font-bold uppercase tracking-widest text-color-white">
             Transformar seu espaço
           </h2>
         </div>
