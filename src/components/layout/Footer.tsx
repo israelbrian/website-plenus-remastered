@@ -16,10 +16,10 @@ export default function Footer() {
 
           {/* Coluna 1: Marca e Sobre */}
           <div className="flex flex-col gap-6">
-            <div className="w-32 h-auto rounded-lg overflow-hidden">
+            <div className="w-36 h-auto rounded-lg overflow-hidden">
               {/* Ajuste de logo - background branco para contraste se o logo for escuro, ou transparente */}
               <Image
-                src="/images/logo/plenus-new-logo.jpeg"
+                src="/images/logo/plenus-new-logo.png"
                 alt="Plenus Planejados Logo"
                 width={150}
                 height={150}
