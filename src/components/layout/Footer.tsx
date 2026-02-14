@@ -85,7 +85,10 @@ export default function Footer() {
                 <Link href="https://www.google.com/maps/place/R.+%C3%89rico+Ver%C3%ADssimo,+1369+-+S%C3%A3o+Jo%C3%A3o+Batista,+Belo+Horizonte+-+MG,+31520-360/@-19.8158081,-43.9778381,17z/data=!3m1!4b1!4m6!3m5!1s0xa68fd1c7e272b3:0x5291f1474997f0d4!8m2!3d-19.8158132!4d-43.9752578!16s%2Fg%2F11c226tx3p?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 className="flex items-center gap-3 text-color-beige-100 hover:text-color-accent transition-colors">
-                  <span className="mt-1">📍</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                  </svg>
                   <span>
                     Avenida Érico Veríssimo 1369 <br />
                     Santa Mônica - Belo Horizonte / MG
@@ -99,7 +102,7 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <h3 className="font-family-title text-xl text-color-white font-bold tracking-wide">Orçamento</h3>
             <p className="font-family-body text-sm text-color-beige-200">
-              Deseja renovar seu ambiente? Entre em contato por e-mail para receber novidades.
+              Deseja renovar seu ambiente? Entre em contato para receber novidades.
             </p>
             <ul className="flex flex-col gap-4 font-family-body text-sm">
               <li>
@@ -144,7 +147,9 @@ export default function Footer() {
           <p>© {currentYear} Plenus Planejados. Todos os direitos reservados.</p>
           <div className="flex gap-2">
             <span className="text-color-beige-300 transition-colors">Desenvolvido por</span>
-            <span className="text-color-beige-100 hover:text-color-white cursor-pointer transition-colors">Israel Brian Dev</span>
+            <Link href="https://www.linkedin.com/in/israel-brian/" target="_blank">
+              <span className="text-color-beige-100 hover:text-color-white cursor-pointer transition-colors">Israel Brian Dev</span>
+            </Link>
           </div>
         </div>
       </div>
