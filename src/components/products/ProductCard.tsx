@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types';
+import { createProductSlug } from '@/lib/products';
 
 interface ProductCardProps {
   product: Product;
@@ -9,7 +10,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
-      href={`/produtos/${product.categoriaSlug}/${product.id}`}
+      href={`/produtos/${product.categoriaSlug}/${createProductSlug(product.id, product.nome)}`}
       className="group block bg-color-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
     >
       <div className="relative w-full h-48 md:h-64 overflow-hidden">

@@ -50,3 +50,19 @@ export function getProductByCategoryAndId(
       product.categoriaSlug === categoria && product.id === id
   );
 }
+
+export function createProductSlug(id: number, name: string): string {
+  const slug = name
+    .toLowerCase()
+    .normalize('NFD') // Remove accents
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\s-]/g, '') // Remove special chars
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Remove duplicate hyphens
+    .trim();
+  return `${id}-${slug}`;
+}
+
+export function extractIdFromSlug(slug: string): number {
+  return parseInt(slug.split('-')[0], 10);
+}

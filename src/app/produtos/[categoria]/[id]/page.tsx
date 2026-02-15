@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getProductByCategoryAndId, getAllProducts } from '@/lib/products';
+import { getProductByCategoryAndId, getAllProducts, createProductSlug, extractIdFromSlug } from '@/lib/products';
 import ProductGallery from '@/components/product-detail/ProductGallery';
 import ProductInfo from '@/components/product-detail/ProductInfo';
 
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   const products = getAllProducts();
   return products.map((product) => ({
     categoria: product.categoriaSlug,
-    id: product.id.toString(),
+    id: createProductSlug(product.id, product.nome),
   }));
 }
 
@@ -23,7 +23,7 @@ export async function generateMetadata({
   params,
 }: ProductDetailPageProps): Promise<Metadata> {
   const { id, categoria } = await params;
-  const productId = parseInt(id, 10);
+  const productId = extractIdFromSlug(id);
   const product = getProductByCategoryAndId(categoria, productId);
 
   if (!product) {
@@ -47,7 +47,7 @@ export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
   const { id, categoria } = await params;
-  const productId = parseInt(id, 10);
+  const productId = extractIdFromSlug(id);
 
   if (isNaN(productId)) {
     notFound();
