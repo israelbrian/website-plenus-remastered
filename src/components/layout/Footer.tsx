@@ -82,7 +82,7 @@ export default function Footer() {
             </h3>
             <ul className="flex flex-col gap-4 font-family-body text-sm">
               <li className="flex items-start gap-3">
-                <Link href="https://www.google.com/maps/place/R.+%C3%89rico+Ver%C3%ADssimo,+1369+-+S%C3%A3o+Jo%C3%A3o+Batista,+Belo+Horizonte+-+MG,+31520-360/@-19.8158081,-43.9778381,17z/data=!3m1!4b1!4m6!3m5!1s0xa68fd1c7e272b3:0x5291f1474997f0d4!8m2!3d-19.8158132!4d-43.9752578!16s%2Fg%2F11c226tx3p?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+                <Link href="https://www.google.com/maps/place/Plenus+planejados/@-19.8159498,-43.9761435,18.25z/data=!4m14!1m7!3m6!1s0xa68fd31aa9b883:0xb675544313d857f0!2sPlenus+planejados!8m2!3d-19.8158329!4d-43.975393!16s%2Fg%2F11yw2hwt6n!3m5!1s0xa68fd31aa9b883:0xb675544313d857f0!8m2!3d-19.8158329!4d-43.975393!16s%2Fg%2F11yw2hwt6n?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3Dhttps://www.google.com/maps/place/Plenus+planejados/@-19.8159498,-43.9761435,18.25z/data=!4m14!1m7!3m6!1s0xa68fd31aa9b883:0xb675544313d857f0!2sPlenus+planejados!8m2!3d-19.8158329!4d-43.975393!16s%2Fg%2F11yw2hwt6n!3m5!1s0xa68fd31aa9b883:0xb675544313d857f0!8m2!3d-19.8158329!4d-43.975393!16s%2Fg%2F11yw2hwt6n?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   className="flex items-center gap-3 text-color-beige-100 hover:text-color-accent transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -90,8 +90,8 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                   </svg>
                   <span>
-                    Avenida Érico Veríssimo 1369 <br />
-                    Santa Mônica - Belo Horizonte / MG
+                    Rua Érico Veríssimo 1379<br />
+                    São João Batista, Belo Horizonte - MG
                   </span>
                 </Link>
               </li>
