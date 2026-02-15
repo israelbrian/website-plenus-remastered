@@ -5,9 +5,9 @@
       "nome": "Armário Planejado Moderno",
       "categoria": "armarios",
       "categoriaSlug": "armarios",
-      "imagemPrincipal": "/images/produtos/armario.jpg",
+      "imagemPrincipal": "/images/produtos/armario-moderno.jpg",
       "imagens": [
-        "/images/produtos/armario.jpg"
+        "/images/produtos/armario-planejado-moderno.jpg"
       ],
       "descricao": "Armário planejado em MDF com acabamento premium, ideal para quartos e áreas de armazenamento. Design moderno e funcional.",
       "destaque": true,
@@ -18,9 +18,9 @@
       "nome": "Armário Planejado Rustico",
       "categoria": "armarios",
       "categoriaSlug": "armarios",
-      "imagemPrincipal": "/images/produtos/armario.jpg",
+      "imagemPrincipal": "/images/produtos/armario-rustico.jpeg",
       "imagens": [
-        "/images/produtos/armario.jpg"
+        "/images/produtos/armario-rustico.jpeg"
       ],
       "descricao": "Armário planejado em MDF com acabamento premium, ideal para quartos e áreas de armazenamento. Design moderno e funcional.",
       "destaque": true,
@@ -28,27 +28,27 @@
     },
     {
       "id": 3,
-      "nome": "Cozinha Planejada Completa",
-      "categoria": "cozinha",
-      "categoriaSlug": "cozinha",
-      "imagemPrincipal": "/images/produtos/armario.jpg",
+      "nome": "Cama Planejada com Cabeceira",
+      "categoria": "cama",
+      "categoriaSlug": "cama",
+      "imagemPrincipal": "/images/produtos/cama-cabeceira.jpg",
       "imagens": [
-        "/images/produtos/armario.jpg"
+        "/images/produtos/cama-cabeceira.jpg"
       ],
-      "descricao": "Cozinha planejada completa com armários superiores e inferiores, ilha central e acabamento em MDF de alta qualidade.",
+      "descricao": "Cama planejada com cabeceira integrada e gavetas embutidas. Perfeita para quartos modernos e funcionais.",
       "destaque": true,
       "relevancia": 5
     },
     {
       "id": 4,
-      "nome": "Cama Planejada com Cabeceira",
-      "categoria": "cama",
-      "categoriaSlug": "cama",
-      "imagemPrincipal": "/images/produtos/armario.jpg",
+      "nome": "Cozinha Planejada Completa",
+      "categoria": "cozinha",
+      "categoriaSlug": "cozinha",
+      "imagemPrincipal": "/images/produtos/cozinha-planejada-completa.jpg",
       "imagens": [
-        "/images/produtos/armario.jpg"
+        "/images/produtos/cozinha-planejada-completa.jpg"
       ],
-      "descricao": "Cama planejada com cabeceira integrada e gavetas embutidas. Perfeita para quartos modernos e funcionais.",
+      "descricao": "Cozinha planejada completa com armários superiores e inferiores, ilha central e acabamento em MDF de alta qualidade.",
       "destaque": true,
       "relevancia": 4
     }
