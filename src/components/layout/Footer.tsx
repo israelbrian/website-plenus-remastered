@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { EnvelopeIcon, PaperAirplaneIcon } from '@heroicons/react/24/solid';
+import { EnvelopeIcon } from '@heroicons/react/24/solid';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 import WhatsAppIcon from '@/components/icons/WhatsAppIcon';
 
@@ -107,8 +107,8 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 font-family-body text-sm">
               <li>
                 <Link href="mailto:vendas@plenusplanejados.com.br" className="flex items-center gap-3 hover:text-color-accent transition-colors">
-                  <EnvelopeIcon className="w-5 h-5 text-color-accent" />
-                  <span>vendas@plenusplanejados.com.br</span>
+                  <EnvelopeIcon className="w-5 h-5 text-color-accent flex-shrink-0" />
+                  <span className="break-all">vendas@plenusplanejados.com.br</span>
                 </Link>
               </li>
               <li>
@@ -118,26 +118,6 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-
-            {/* <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
-              <div className="flex bg-color-beige-600/30 rounded-lg overflow-hidden border border-color-beige-600/50 focus-within:border-color-accent transition-colors">
-                <input 
-                  type="email" 
-                  placeholder="Seu e-mail" 
-                  className="bg-transparent text-sm px-4 py-3 text-color-white placeholder-color-beige-400 focus:outline-none w-full font-family-body"
-                />
-                <button 
-                  type="submit"
-                  className="bg-color-accent text-color-primary px-4 hover:bg-color-white transition-colors duration-300"
-                  aria-label="Enviar"
-                >
-                  <PaperAirplaneIcon className="w-5 h-5" />
-                </button>
-              </div>
-              <p className="text-xs text-color-beige-400">
-                Livre de spam.
-              </p>
-            </form> */}
           </div>
 
         </div>
