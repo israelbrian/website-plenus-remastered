@@ -1,21 +1,30 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getProductByCategoryAndId } from '@/lib/products';
+import { getProductByCategoryAndId, getAllProducts } from '@/lib/products';
 import ProductGallery from '@/components/product-detail/ProductGallery';
 import ProductInfo from '@/components/product-detail/ProductInfo';
 
 interface ProductDetailPageProps {
-  params: {
+  params: Promise<{
     categoria: string;
     id: string;
-  };
+  }>;
+}
+
+export async function generateStaticParams() {
+  const products = getAllProducts();
+  return products.map((product) => ({
+    categoria: product.categoriaSlug,
+    id: product.id.toString(),
+  }));
 }
 
 export async function generateMetadata({
   params,
 }: ProductDetailPageProps): Promise<Metadata> {
-  const productId = parseInt(params.id, 10);
-  const product = getProductByCategoryAndId(params.categoria, productId);
+  const { id, categoria } = await params;
+  const productId = parseInt(id, 10);
+  const product = getProductByCategoryAndId(categoria, productId);
 
   if (!product) {
     return {
@@ -34,16 +43,17 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductDetailPage({
+export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
-  const productId = parseInt(params.id, 10);
+  const { id, categoria } = await params;
+  const productId = parseInt(id, 10);
 
   if (isNaN(productId)) {
     notFound();
   }
 
-  const product = getProductByCategoryAndId(params.categoria, productId);
+  const product = getProductByCategoryAndId(categoria, productId);
 
   if (!product) {
     notFound();
