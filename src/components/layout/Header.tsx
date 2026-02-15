@@ -34,7 +34,7 @@ export default function Header() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-color-white hover:text-color-accent transition-colors duration-200"
+                className="hidden md:block text-color-white hover:text-color-accent transition-colors duration-200"
                 aria-label={label}
               >
                 <Icon className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px]" />
