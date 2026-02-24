@@ -121,7 +121,7 @@ export default function ContactPage() {
                                         <Link
                                             href="https://instagram.com/plenusplanejados"
                                             target="_blank"
-                                            className="bg-transparent border-2 border-color-primary text-color-primary hover:bg-color-primary hover:text-color-white font-family-title font-bold px-6 py-2 rounded-lg transition-all"
+                                            className="bg-color-primary text-color-white hover:bg-color-accent hover:text-color-primary transition-all font-family-title font-bold px-6 py-2 rounded-lg transition-all"
                                         >
                                             Ver mais
                                         </Link>
