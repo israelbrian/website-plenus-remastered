@@ -10,12 +10,12 @@ import { useState } from 'react';
 const NAV_ITEMS = [
   { label: 'Página Inicial', href: '/', match: (path: string) => path === '/' },
   { label: 'Produtos', href: '/produtos', match: (path: string) => path.startsWith('/produtos') },
-  { label: 'Contato', href: '/#contato', match: () => false },
+  { label: 'Contato', href: '/contato', match: (path: string) => path === '/contato' },
 ] as const;
 
 const SOCIAL_LINKS = [
   { href: 'https://instagram.com/plenusplanejados', label: 'Instagram', icon: InstagramIcon },
-  { href: 'https://wa.me/55319966407544', label: 'WhatsApp', icon: WhatsAppIcon },
+  { href: 'https://wa.me/3185697977', label: 'WhatsApp', icon: WhatsAppIcon },
 ] as const;
 
 export default function Header() {

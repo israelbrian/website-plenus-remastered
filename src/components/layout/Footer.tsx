@@ -67,7 +67,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#contato" className="hover:text-color-accent transition-colors duration-200 inline-flex items-center gap-2 group">
+                <Link href="/contato" className="hover:text-color-accent transition-colors duration-200 inline-flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-color-accent opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Contato
                 </Link>
