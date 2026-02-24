@@ -84,44 +84,44 @@ export default function ContactPage() {
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 {/* WhatsApp Card */}
-                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all group">
+                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all group flex flex-col h-full">
                                     <WhatsAppIcon className="w-10 h-10 text-[#25D366] mb-4" />
                                     <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">WhatsApp</h3>
                                     <p className="font-family-body text-color-muted text-sm mb-6">Resposta rápida para orçamentos e dúvidas.</p>
                                     <Link
                                         href={`https://wa.me/${phone}?text=${whatsappMsg}`}
                                         target="_blank"
-                                        className="inline-block w-full text-center bg-[#25D366] text-white font-family-title font-bold py-3 rounded-lg hover:bg-[#128C7E] transition-colors"
+                                        className="mt-auto inline-block w-full text-center bg-color-primary text-color-white font-family-title font-bold py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
                                     >
                                         Fazer um orçamento
                                     </Link>
                                 </div>
 
                                 {/* Email Card */}
-                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all">
+                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all flex flex-col h-full">
                                     <EnvelopeIcon className="w-10 h-10 text-color-accent mb-4" />
                                     <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">E-mail</h3>
                                     <p className="font-family-body text-color-muted text-sm mb-6">Ideal para envio de projetos e plantas.</p>
                                     <button
                                         onClick={() => setIsEmailModalOpen(true)}
-                                        className="inline-block w-full text-center bg-color-primary text-color-white font-family-title font-bold py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
+                                        className="mt-auto inline-block w-full text-center bg-color-primary text-color-white font-family-title font-bold py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
                                     >
                                         Enviar Mensagem
                                     </button>
                                 </div>
 
                                 {/* Instagram Card */}
-                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all sm:col-span-2">
-                                    <div className="flex items-center gap-6">
-                                        <InstagramIcon className="w-12 h-12 text-color-primary" />
-                                        <div className="flex-1">
-                                            <h3 className="font-family-title font-bold text-color-primary text-xl mb-1">Nosso Instagram</h3>
-                                            <p className="font-family-body text-color-muted text-sm">Inspirações diárias e fotos de projetos concluídos.</p>
+                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all sm:col-span-2 flex flex-col h-full">
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 h-full w-full">
+                                        <div className="flex flex-col h-full flex-1">
+                                            <InstagramIcon className="w-10 h-10 text-color-primary mb-4" />
+                                            <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">Nosso Instagram</h3>
+                                            <p className="font-family-body text-color-muted text-sm mb-6 sm:mb-0">Fotos de projetos.</p>
                                         </div>
                                         <Link
                                             href="https://instagram.com/plenusplanejados"
                                             target="_blank"
-                                            className="bg-color-primary text-color-white hover:bg-color-accent hover:text-color-primary transition-all font-family-title font-bold px-6 py-2 rounded-lg transition-all"
+                                            className="mt-auto sm:mt-0 inline-block w-full sm:w-auto text-center bg-color-primary text-color-white hover:bg-color-accent hover:text-color-primary transition-all font-family-title font-bold px-8 py-3 rounded-lg"
                                         >
                                             Ver mais
                                         </Link>
