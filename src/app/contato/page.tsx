@@ -61,7 +61,7 @@ export default function ContactPage() {
     return (
         <div className="bg-color-surface min-h-screen">
             {/* Hero Section */}
-            <section className="bg-color-primary py-20 text-center">
+            {/* <section className="bg-color-primary py-20 text-center">
                 <div className="container mx-auto px-4">
                     <h1 className="font-family-title text-4xl md:text-5xl font-bold text-color-white uppercase tracking-widest mb-4">
                         Contato
@@ -70,7 +70,7 @@ export default function ContactPage() {
                         Estamos prontos para transformar seu espaço
                     </p>
                 </div>
-            </section>
+            </section> */}
 
             <div className="container mx-auto px-4 py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
