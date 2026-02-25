@@ -1,79 +1,187 @@
-import EnvelopeIcon from "@heroicons/react/24/solid/EnvelopeIcon";
-import { useState } from "react";
-import Link from "next/link";
+'use client';
+
+import { useState } from 'react';
+import { EnvelopeIcon, PhoneIcon, UserIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/solid';
 
 export default function ContactForm() {
-    const email = "plenusplanejados@gmail.com";
-    const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        message: ''
+    });
 
-    const emailProviders = [
-        {
-            name: 'Gmail',
-            url: `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`,
-            icon: 'G'
-        },
-        {
-            name: 'Outlook / Hotmail',
-            url: `https://outlook.office.com/mail/deeplink/compose?to=${email}`,
-            icon: 'O'
-        },
-        {
-            name: 'Aplicativo Padrão (Mailto)',
-            url: `mailto:${email}`,
-            icon: '@'
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Erro ao enviar mensagem');
+            }
+
+            setStatus('success');
+            setFormData({ name: '', phone: '', email: '', message: '' });
+        } catch (error: any) {
+            console.error('Erro no formulário:', error);
+            setStatus('error');
+            setErrorMessage(error.message || 'Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.');
         }
-    ];
+    };
 
-    return (
-        <>
-            <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all sm:col-span-2 flex flex-col h-full">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 h-full w-full">
-                    <div className="flex flex-col h-full flex-1">
-                        <EnvelopeIcon className="w-10 h-10 text-color-accent mb-4" />
-                        <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">E-mail</h3>
-                        <p className="font-family-body text-color-muted text-sm mb-6 sm:mb-0">Ideal para envio de projetos e plantas.</p>
+    if (status === 'success') {
+        return (
+            <div className="sm:col-span-2">
+                <div className="bg-color-white p-8 rounded-2xl shadow-lg border-2 border-green-500 text-center space-y-4 animate-in fade-in zoom-in duration-500 h-full flex flex-col items-center justify-center">
+                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
                     </div>
+                    <h3 className="font-family-title text-2xl font-bold text-color-primary">E-mail Enviado!</h3>
+                    <p className="font-family-body text-color-muted">Sua mensagem foi entregue com sucesso. Em breve retornaremos o seu contato.</p>
                     <button
-                        onClick={() => setIsEmailModalOpen(true)}
-                        className="mt-auto sm:mt-0 inline-block w-full sm:w-auto text-center bg-color-primary text-color-white font-family-title font-bold px-8 py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
+                        onClick={() => setStatus('idle')}
+                        className="mt-6 px-8 py-3 bg-color-primary text-color-white font-family-title font-bold rounded-lg hover:bg-color-accent hover:text-color-primary transition-all"
                     >
-                        Enviar Mensagem
+                        Enviar outra mensagem
                     </button>
                 </div>
             </div>
+        );
+    }
 
-            {isEmailModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-color-primary/60 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="bg-color-white rounded-3xl p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-300">
-                        <h3 className="font-family-title text-2xl font-bold text-color-primary mb-2">Enviar E-mail</h3>
-                        <p className="font-family-body text-color-muted text-sm mb-8">Escolha como prefere abrir o seu e-mail:</p>
+    return (
+        <div className="sm:col-span-2">
+            <form onSubmit={handleSubmit} className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 space-y-6">
+                <h2 className="font-family-title text-2xl font-bold text-color-primary mb-2">Solicite um Orçamento</h2>
+                <p className="font-family-body text-color-muted text-sm mb-8">Preencha os campos abaixo e entraremos em contato o mais breve possível.</p>
 
-                        <div className="space-y-4">
-                            {emailProviders.map((provider) => (
-                                <Link
-                                    key={provider.name}
-                                    href={provider.url}
-                                    target={provider.name.includes('App') ? '_self' : '_blank'}
-                                    onClick={() => setIsEmailModalOpen(false)}
-                                    className="flex items-center gap-4 p-4 rounded-xl border-2 border-color-border/10 hover:border-color-accent hover:bg-color-accent/5 transition-all group"
-                                >
-                                    <div className="w-10 h-10 rounded-full bg-color-primary text-color-white flex items-center justify-center font-bold group-hover:bg-color-accent transition-colors">
-                                        {provider.icon}
-                                    </div>
-                                    <span className="font-family-title font-bold text-color-primary">{provider.name}</span>
-                                </Link>
-                            ))}
+                <div className="space-y-4">
+                    {/* Nome */}
+                    <div className="space-y-1">
+                        <label htmlFor="name" className="block font-family-title text-xs font-bold text-color-primary uppercase tracking-wider">
+                            Nome Completo
+                        </label>
+                        <div className="relative group">
+                            <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-color-muted group-focus-within:text-color-accent transition-colors" />
+                            <input
+                                required
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all"
+                                placeholder="Seu nome"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* Telefone */}
+                        <div className="space-y-1">
+                            <label htmlFor="phone" className="block font-family-title text-xs font-bold text-color-primary uppercase tracking-wider">
+                                Telefone / WhatsApp
+                            </label>
+                            <div className="relative group">
+                                <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-color-muted group-focus-within:text-color-accent transition-colors" />
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all"
+                                    placeholder="(00) 00000-0000"
+                                />
+                            </div>
                         </div>
 
-                        <button
-                            onClick={() => setIsEmailModalOpen(false)}
-                            className="mt-8 w-full py-3 font-family-title font-bold text-color-muted hover:text-color-primary transition-colors"
-                        >
-                            Cancelar
-                        </button>
+                        {/* E-mail */}
+                        <div className="space-y-1">
+                            <label htmlFor="email" className="block font-family-title text-xs font-bold text-color-primary uppercase tracking-wider">
+                                E-mail
+                            </label>
+                            <div className="relative group">
+                                <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-color-muted group-focus-within:text-color-accent transition-colors" />
+                                <input
+                                    required
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all"
+                                    placeholder="seu@email.com"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Mensagem */}
+                    <div className="space-y-1">
+                        <label htmlFor="message" className="block font-family-title text-xs font-bold text-color-primary uppercase tracking-wider">
+                            Sua Mensagem
+                        </label>
+                        <div className="relative group">
+                            <ChatBubbleLeftEllipsisIcon className="absolute left-3 top-3 w-5 h-5 text-color-muted group-focus-within:text-color-accent transition-colors" />
+                            <textarea
+                                required
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows={4}
+                                className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all resize-none"
+                                placeholder="Descreva seu projeto ou dúvida..."
+                            />
+                        </div>
                     </div>
                 </div>
-            )}
-        </>
+
+                {status === 'error' && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <p className="text-sm text-red-600 font-family-body">{errorMessage}</p>
+                    </div>
+                )}
+
+                <button
+                    disabled={status === 'loading'}
+                    type="submit"
+                    className="w-full py-4 bg-color-primary text-color-white font-family-title font-bold rounded-lg hover:bg-color-accent hover:text-color-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
+                >
+                    {status === 'loading' ? (
+                        <>
+                            <div className="w-5 h-5 border-2 border-color-white border-t-transparent rounded-full animate-spin" />
+                            <span>Enviando...</span>
+                        </>
+                    ) : (
+                        <>
+                            <span>Enviar Solicitação</span>
+                            <EnvelopeIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </>
+                    )}
+                </button>
+            </form>
+        </div>
     );
 }
