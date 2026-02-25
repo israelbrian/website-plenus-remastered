@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import WhatsAppIcon from '@/components/icons/WhatsAppIcon';
-import InstagramIcon from '@/components/icons/InstagramIcon';
+import WhatsAppCard from '@/components/contact/WhatsAppCard';
+import InstagramCard from '@/components/contact/InstagramCard';
 import { EnvelopeIcon, MapPinIcon, ClockIcon, StarIcon } from '@heroicons/react/24/solid';
+import ContactForm from '@/components/contact/ContactForm';
 
 const REVIEWS = [
     {
@@ -34,29 +35,8 @@ const REVIEWS = [
 ];
 
 export default function ContactPage() {
-    const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
-    const email = "plenusplanejados@gmail.com";
-    const phone = "3185697977";
-    const whatsappMsg = encodeURIComponent("Olá! Estava navegando no site plenusplanejados.com.br e gostaria de solicitar um orçamento pessoal.");
-
-    const emailProviders = [
-        {
-            name: 'Gmail',
-            url: `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`,
-            icon: 'G'
-        },
-        {
-            name: 'Outlook / Hotmail',
-            url: `https://outlook.office.com/mail/deeplink/compose?to=${email}`,
-            icon: 'O'
-        },
-        {
-            name: 'Aplicativo Padrão (Mailto)',
-            url: `mailto:${email}`,
-            icon: '@'
-        }
-    ];
+    
 
     return (
         <div className="bg-color-surface min-h-screen">
@@ -82,51 +62,11 @@ export default function ContactPage() {
                                 Canais de Atendimento
                             </h2>
 
+                            Canais de Atendimento
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                {/* WhatsApp Card */}
-                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all group flex flex-col h-full">
-                                    <WhatsAppIcon className="w-10 h-10 text-[#25D366] mb-4" />
-                                    <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">WhatsApp</h3>
-                                    <p className="font-family-body text-color-muted text-sm mb-6">Resposta rápida para orçamentos e dúvidas.</p>
-                                    <Link
-                                        href={`https://wa.me/${phone}?text=${whatsappMsg}`}
-                                        target="_blank"
-                                        className="mt-auto inline-block w-full text-center bg-color-primary text-color-white font-family-title font-bold py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
-                                    >
-                                        Fazer um orçamento
-                                    </Link>
-                                </div>
-
-                                {/* Instagram Card */}
-                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all flex flex-col h-full">
-                                    <InstagramIcon className="w-10 h-10 text-color-primary mb-4" />
-                                    <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">Nosso Instagram</h3>
-                                    <p className="font-family-body text-color-muted text-sm mb-6">Fotos de projetos.</p>
-                                    <Link
-                                        href="https://instagram.com/plenusplanejados"
-                                        target="_blank"
-                                        className="mt-auto inline-block w-full text-center bg-color-primary text-color-white hover:bg-color-accent hover:text-color-primary transition-all font-family-title font-bold py-3 rounded-lg"
-                                    >
-                                        Ver mais
-                                    </Link>
-                                </div>
-
-                                {/* Email Card */}
-                                <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all sm:col-span-2 flex flex-col h-full">
-                                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 h-full w-full">
-                                        <div className="flex flex-col h-full flex-1">
-                                            <EnvelopeIcon className="w-10 h-10 text-color-accent mb-4" />
-                                            <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">E-mail</h3>
-                                            <p className="font-family-body text-color-muted text-sm mb-6 sm:mb-0">Ideal para envio de projetos e plantas.</p>
-                                        </div>
-                                        <button
-                                            onClick={() => setIsEmailModalOpen(true)}
-                                            className="mt-auto sm:mt-0 inline-block w-full sm:w-auto text-center bg-color-primary text-color-white font-family-title font-bold px-8 py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
-                                        >
-                                            Enviar Mensagem
-                                        </button>
-                                    </div>
-                                </div>
+                                <WhatsAppCard />
+                                <InstagramCard />
+                                <ContactForm />
                             </div>
                         </div>
 
@@ -210,40 +150,6 @@ export default function ContactPage() {
                     </div>
                 </div>
             </div>
-
-            {/* Email Provider Modal */}
-            {isEmailModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-color-primary/60 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="bg-color-white rounded-3xl p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-300">
-                        <h3 className="font-family-title text-2xl font-bold text-color-primary mb-2">Enviar E-mail</h3>
-                        <p className="font-family-body text-color-muted text-sm mb-8">Escolha como prefere abrir o seu e-mail:</p>
-
-                        <div className="space-y-4">
-                            {emailProviders.map((provider) => (
-                                <Link
-                                    key={provider.name}
-                                    href={provider.url}
-                                    target={provider.name.includes('App') ? '_self' : '_blank'}
-                                    onClick={() => setIsEmailModalOpen(false)}
-                                    className="flex items-center gap-4 p-4 rounded-xl border-2 border-color-border/10 hover:border-color-accent hover:bg-color-accent/5 transition-all group"
-                                >
-                                    <div className="w-10 h-10 rounded-full bg-color-primary text-color-white flex items-center justify-center font-bold group-hover:bg-color-accent transition-colors">
-                                        {provider.icon}
-                                    </div>
-                                    <span className="font-family-title font-bold text-color-primary">{provider.name}</span>
-                                </Link>
-                            ))}
-                        </div>
-
-                        <button
-                            onClick={() => setIsEmailModalOpen(false)}
-                            className="mt-8 w-full py-3 font-family-title font-bold text-color-muted hover:text-color-primary transition-colors"
-                        >
-                            Cancelar
-                        </button>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
