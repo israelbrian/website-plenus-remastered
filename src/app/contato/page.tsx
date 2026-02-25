@@ -97,34 +97,34 @@ export default function ContactPage() {
                                     </Link>
                                 </div>
 
-                                {/* Email Card */}
+                                {/* Instagram Card */}
                                 <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all flex flex-col h-full">
-                                    <EnvelopeIcon className="w-10 h-10 text-color-accent mb-4" />
-                                    <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">E-mail</h3>
-                                    <p className="font-family-body text-color-muted text-sm mb-6">Ideal para envio de projetos e plantas.</p>
-                                    <button
-                                        onClick={() => setIsEmailModalOpen(true)}
-                                        className="mt-auto inline-block w-full text-center bg-color-primary text-color-white font-family-title font-bold py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
+                                    <InstagramIcon className="w-10 h-10 text-color-primary mb-4" />
+                                    <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">Nosso Instagram</h3>
+                                    <p className="font-family-body text-color-muted text-sm mb-6">Fotos de projetos.</p>
+                                    <Link
+                                        href="https://instagram.com/plenusplanejados"
+                                        target="_blank"
+                                        className="mt-auto inline-block w-full text-center bg-color-primary text-color-white hover:bg-color-accent hover:text-color-primary transition-all font-family-title font-bold py-3 rounded-lg"
                                     >
-                                        Enviar Mensagem
-                                    </button>
+                                        Ver mais
+                                    </Link>
                                 </div>
 
-                                {/* Instagram Card */}
+                                {/* Email Card */}
                                 <div className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 hover:shadow-xl transition-all sm:col-span-2 flex flex-col h-full">
                                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 h-full w-full">
                                         <div className="flex flex-col h-full flex-1">
-                                            <InstagramIcon className="w-10 h-10 text-color-primary mb-4" />
-                                            <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">Nosso Instagram</h3>
-                                            <p className="font-family-body text-color-muted text-sm mb-6 sm:mb-0">Fotos de projetos.</p>
+                                            <EnvelopeIcon className="w-10 h-10 text-color-accent mb-4" />
+                                            <h3 className="font-family-title font-bold text-color-primary text-xl mb-2">E-mail</h3>
+                                            <p className="font-family-body text-color-muted text-sm mb-6 sm:mb-0">Ideal para envio de projetos e plantas.</p>
                                         </div>
-                                        <Link
-                                            href="https://instagram.com/plenusplanejados"
-                                            target="_blank"
-                                            className="mt-auto sm:mt-0 inline-block w-full sm:w-auto text-center bg-color-primary text-color-white hover:bg-color-accent hover:text-color-primary transition-all font-family-title font-bold px-8 py-3 rounded-lg"
+                                        <button
+                                            onClick={() => setIsEmailModalOpen(true)}
+                                            className="mt-auto sm:mt-0 inline-block w-full sm:w-auto text-center bg-color-primary text-color-white font-family-title font-bold px-8 py-3 rounded-lg hover:bg-color-accent hover:text-color-primary transition-colors"
                                         >
-                                            Ver mais
-                                        </Link>
+                                            Enviar Mensagem
+                                        </button>
                                     </div>
                                 </div>
                             </div>
