@@ -1,8 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
-// teste
 export const dynamic = 'force-dynamic';
-export const runtime = 'edge';
 
 export async function POST(request: Request) {
     // 2. Trava de Segurança: Verifica se a Cloudflare injetou a chave corretamente
