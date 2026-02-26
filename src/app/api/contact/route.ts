@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs';export const runtime = 'nodejs';
+// export const runtime = 'nodejs';export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
