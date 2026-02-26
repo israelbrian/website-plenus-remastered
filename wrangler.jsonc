@@ -6,9 +6,6 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "vars": {
-    "RESEND_API_KEY": "secret_var"
-  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
