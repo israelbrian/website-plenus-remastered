@@ -12,6 +12,7 @@ Modernizar o website legado para uma aplicação web moderna, responsiva e perfo
 - **React 18+** - Biblioteca de interface
 - **TypeScript** - Tipagem estática
 - **Tailwind CSS** - Framework CSS utility-first com Design System centralizado
+- **Resend** - Biblioteca para envio de e-mail via api key.
 
 ### Bibliotecas Complementares
 - **Lucide React** - Ícones gratuitos e modernos
