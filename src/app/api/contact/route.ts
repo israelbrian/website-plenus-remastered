@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
         const { data, error } = await resend.emails.send({
             from: 'Plenus Planejados <onboarding@resend.dev>', // No ambiente real, usar um domínio verificado
-            to: ['zdesenhos@gmail.com'],
+            to: ['vendas@plenusplanejados.com.br'],
             subject: `Novo Orçamento/Contato via Site - ${name}`,
             html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #c4c0ab; border-radius: 8px; overflow: hidden;">
