@@ -299,6 +299,9 @@ npm install
 # Executar em modo desenvolvimento
 npm run dev
 
+# Executar em modo preview Cloudflare 
+npm run preview
+
 # Build para produção
 npm run build
 
@@ -309,7 +312,7 @@ npm start
 npm run lint
 ```
 
-O projeto estará disponível em `http://localhost:3000`
+O projeto estará disponível dentro em `https://website-plenus-remastered.zdesenhos.workers.dev/` (Dominio temporario)
 
 ## 📝 Padrões de Desenvolvimento
 
@@ -339,15 +342,25 @@ O projeto estará disponível em `http://localhost:3000`
 - **Performance:** Lighthouse score mínimo 90+
 - **SEO:** Meta tags, structured data, sitemap
 
-## 📦 Deploy
+## 🚀 Deploy e Infraestrutura (Cloudflare Pages + OpenNext)
 
-O projeto está configurado para export estático (SSG). Para deploy:
+Este projeto utiliza o **Cloudflare Pages** para hospedagem, aproveitando a infraestrutura global da Cloudflare (Edge Computing). O processo de adaptação do Next.js para o ambiente de Workers é feito através do **OpenNext**.
 
-1. Execute `npm run build`
-2. A pasta `out/` conterá os arquivos estáticos
-3. Faça upload para qualquer serviço de hospedagem estática
+### 🛠️ Fluxo de Trabalho (CI/CD)
 
-**Recomendação:** Vercel (deploy automático via Git)
+O deploy é **100% automatizado**:
+1. Ao realizar um `push` ou `merge` para a branch `main`, o Cloudflare detecta a alteração.
+2. O ambiente de build executa o comando `opennextjs-cloudflare build`.
+3. O projeto é convertido em um Worker e distribuído globalmente.
+4. Não é necessario realizar o build manualmente, o Cloudflare faz isso automaticamente.
+
+### 🧪 Teste de Pré-Deploy (Crucial)
+
+Como o ambiente da Cloudflare (Workers) é diferente do Node.js tradicional, algo que funciona no `npm run dev` pode falhar em produção. Para evitar deploys quebrados, utilize o comando de preview:
+
+```
+npm run preview
+```
 
 ## 📄 Licença
 
