@@ -302,6 +302,9 @@ npm run dev
 # Executar em modo preview Cloudflare 
 npm run preview
 
+# Gera os tipos do TypeScript para recursos da Cloudflare (D1, KV, Vars)
+npm run cf-typegen
+
 # Build para produção
 npm run build
 
@@ -355,6 +358,13 @@ O deploy é **100% automatizado**:
 4. Não é necessario realizar o build manualmente, o Cloudflare faz isso automaticamente.
 
 ### 🧪 Teste de Pré-Deploy (Crucial)
+
+Checklist de Deploy (Boas Práticas)
+[ ] Variáveis Sensíveis: Chaves de API devem ser configuradas como Secret no painel da Cloudflare (Settings > Variables).
+
+[ ] Variáveis Locais: Use o arquivo .dev.vars para testes locais com o comando preview (nunca suba este arquivo para o Git).
+
+[ ] Compatibilidade: Evite bibliotecas que dependem de recursos pesados do sistema operacional (como child_process), prefira alternativas compatíveis com Web Standards.
 
 Como o ambiente da Cloudflare (Workers) é diferente do Node.js tradicional, algo que funciona no `npm run dev` pode falhar em produção. Para evitar deploys quebrados, utilize o comando de preview:
 
