@@ -1,7 +1,7 @@
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function InstagramCard() {
+export default function GoogleReviews() {
 
     const REVIEWS = [
     {
