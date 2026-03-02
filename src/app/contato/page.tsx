@@ -14,7 +14,7 @@ export default function ContactPage() {
         <div className="bg-color-surface min-h-screen">
             <div className="container mx-auto px-4 py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                    {/* Coluna 1: Canais de Contato */}
+                    {/* Coluna 1: Canais de Atendimento */}
                     <div className="flex flex-col h-full">
                         <div className="mb-8">
                             <h2 className="font-family-title text-2xl font-bold text-color-primary border-b-2 border-color-accent pb-2 inline-block">
