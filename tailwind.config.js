@@ -43,6 +43,8 @@ module.exports = {
         'color-muted': '#545248',
         'color-border': '#9d9988',
         'color-accent': '#d4c990',
+        'color-whatsapp': '#25D366',
+        'color-instagram': '#E1306C',
       },
       // Famílias de Fontes
       fontFamily: {

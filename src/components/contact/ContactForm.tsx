@@ -49,8 +49,8 @@ export default function ContactForm() {
 
     if (status === 'success') {
         return (
-            <div className="sm:col-span-2">
-                <div className="bg-color-white p-8 rounded-2xl shadow-lg border-2 border-green-500 text-center space-y-4 animate-in fade-in zoom-in duration-500 h-full flex flex-col items-center justify-center">
+            <div className="w-full h-full flex flex-col">
+                <div className="bg-color-white p-6 sm:p-8 rounded-2xl shadow-lg border border-green-500 text-center space-y-4 animate-in fade-in zoom-in duration-500 flex-grow flex flex-col items-center justify-center">
                     <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -70,12 +70,14 @@ export default function ContactForm() {
     }
 
     return (
-        <div className="sm:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-color-white p-8 rounded-2xl shadow-lg border border-color-border/20 space-y-6">
-                <h2 className="font-family-title text-2xl font-bold text-color-primary mb-2">Solicite um Orçamento</h2>
-                <p className="font-family-body text-color-muted text-sm mb-8">Preencha os campos abaixo e entraremos em contato o mais breve possível.</p>
+        <div className="w-full h-full flex flex-col">
+            <form onSubmit={handleSubmit} className="bg-color-white p-6 sm:p-8 rounded-2xl shadow-lg border border-color-border/20 flex flex-col h-full">
+                <div className="mb-6">
+                    <h2 className="font-family-title text-2xl font-bold text-color-primary mb-2">Solicite um Orçamento</h2>
+                    <p className="font-family-body text-color-muted text-sm">Preencha os campos abaixo e entraremos em contato o mais breve possível.</p>
+                </div>
 
-                <div className="space-y-4">
+                <div className="space-y-4 flex-grow flex flex-col">
                     {/* Nome */}
                     <div className="space-y-1">
                         <label htmlFor="name" className="block font-family-title text-xs font-bold text-color-primary uppercase tracking-wider">
@@ -138,11 +140,11 @@ export default function ContactForm() {
                     </div>
 
                     {/* Mensagem */}
-                    <div className="space-y-1">
+                    <div className="space-y-1 flex-grow flex flex-col">
                         <label htmlFor="message" className="block font-family-title text-xs font-bold text-color-primary uppercase tracking-wider">
                             Sua Mensagem
                         </label>
-                        <div className="relative group">
+                        <div className="relative group flex-grow flex flex-col">
                             <ChatBubbleLeftEllipsisIcon className="absolute left-3 top-3 w-5 h-5 text-color-muted group-focus-within:text-color-accent transition-colors" />
                             <textarea
                                 required
@@ -150,8 +152,7 @@ export default function ContactForm() {
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                rows={4}
-                                className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all resize-none"
+                                className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all resize-none flex-grow"
                                 placeholder="Descreva seu projeto ou dúvida..."
                             />
                         </div>
@@ -159,28 +160,30 @@ export default function ContactForm() {
                 </div>
 
                 {status === 'error' && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg mt-4">
                         <p className="text-sm text-red-600 font-family-body">{errorMessage}</p>
                     </div>
                 )}
 
-                <button
-                    disabled={status === 'loading'}
-                    type="submit"
-                    className="w-full py-4 bg-color-primary text-color-white font-family-title font-bold rounded-lg hover:bg-color-accent hover:text-color-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
-                >
-                    {status === 'loading' ? (
-                        <>
-                            <div className="w-5 h-5 border-2 border-color-white border-t-transparent rounded-full animate-spin" />
-                            <span>Enviando...</span>
-                        </>
-                    ) : (
-                        <>
-                            <span>Enviar Solicitação</span>
-                            <EnvelopeIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </>
-                    )}
-                </button>
+                <div className="mt-6">
+                    <button
+                        disabled={status === 'loading'}
+                        type="submit"
+                        className="w-full py-4 bg-color-primary text-color-white font-family-title font-bold rounded-lg hover:bg-color-accent hover:text-color-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
+                    >
+                        {status === 'loading' ? (
+                            <>
+                                <div className="w-5 h-5 border-2 border-color-white border-t-transparent rounded-full animate-spin" />
+                                <span>Enviando...</span>
+                            </>
+                        ) : (
+                            <>
+                                <span>Enviar Solicitação</span>
+                                <EnvelopeIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </>
+                        )}
+                    </button>
+                </div>
             </form>
         </div>
     );

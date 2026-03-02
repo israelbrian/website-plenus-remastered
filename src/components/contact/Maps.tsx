@@ -17,7 +17,7 @@ export default function Maps() {
     }, []);
 
     return (
-        <div className="rounded-2xl overflow-hidden shadow-xl border-4 border-color-white h-[300px]">
+        <div className="rounded-2xl overflow-hidden shadow-sm border border-color-border/10 w-full h-full min-h-[300px] flex flex-col">
             {mapSrc ? (
                 <iframe
                     src={mapSrc}

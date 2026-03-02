@@ -83,6 +83,8 @@ Design system em tons de bege, dourado, preto e branco. As definições e o come
 | `color-beige-600` | #33312b | Texto/UI escuro |
 | `color-beige-900` | #141410 | Fundos e texto principais (primary) |
 | `color-gold` | #d4c990 | Destaques, botões (accent) |
+| `color-whatsapp` | #25D366 | Cor da marca WhatsApp |
+| `color-instagram` | #E1306C | Cor da marca Instagram |
 
 #### Aliases semânticos (manutenção centralizada)
 
@@ -111,6 +113,12 @@ Os aliases apontam para tokens da escala acima. Use-os no dia a dia; para mudar 
 
 - **`color-black`** (#000000)  
   Preto puro, quando for necessário contraste máximo (ex.: logos ou elementos específicos).
+
+- **`color-whatsapp`** (#25D366)  
+  Cor oficial da marca WhatsApp, utilizada exclusivamente para botões, ícones e links que direcionem para o aplicativo de mensagens.
+
+- **`color-instagram`** (#E1306C)  
+  Cor oficial da marca Instagram, utilizada para botões, blocos e ícones referentes à rede social.
 
 **Uso nos componentes:** prefira os aliases semânticos (`color-primary`, `color-surface`, `color-muted`, etc.) para manter significado e manutenção; use a escala numérica (`color-beige-500`, etc.) quando precisar de um tom específico (ex.: header com `bg-color-beige-500`).
 

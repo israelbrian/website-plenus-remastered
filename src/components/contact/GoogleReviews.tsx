@@ -103,24 +103,25 @@ export default async function GoogleReviews() {
         : "5.0";
 
     return (
-        <div>
-            <div className="flex items-center justify-between mb-8">
-                <h2 className="font-family-title text-2xl font-bold text-color-primary border-b-2 border-color-accent pb-2 inline-block">
+        <div className="flex flex-col h-full w-full">
+            <div className="flex items-center justify-between mb-6">
+                <h3 className="font-family-title text-xl font-bold text-color-primary flex items-center gap-2">
+                    <StarIcon className="w-5 h-5 text-yellow-500 fill-current" />
                     Avaliações no Google
-                </h2>
-                <div className="flex items-center gap-2">
-                    <span className="font-family-title font-bold text-lg">{averageRating}</span>
+                </h3>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full">
+                    <span className="font-family-title font-bold text-lg text-color-primary">{averageRating}</span>
                     <div className="flex text-yellow-500">
                         {[...Array(5)].map((_, i) => (
-                            <StarIcon key={i} className="w-5 h-5 fill-current" />
+                            <StarIcon key={i} className="w-4 h-4 fill-current" />
                         ))}
                     </div>
                 </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 flex-grow w-full">
                 {reviews.map((review) => (
-                    <div key={review.id} className="bg-color-white p-6 rounded-xl shadow-sm border border-color-border/10">
+                    <div key={review.id} className="bg-color-surface-alt/20 hover:bg-black/[0.02] p-5 rounded-2xl border border-color-border/10 hover:shadow-md transition-shadow">
                         <div className="flex items-center gap-3 mb-3">
                             <div className="w-10 h-10 bg-color-surface-alt rounded-full flex items-center justify-center font-bold text-color-primary overflow-hidden">
                                 {review.avatar.startsWith('http') ? (
