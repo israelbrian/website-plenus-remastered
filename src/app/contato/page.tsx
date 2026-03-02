@@ -1,4 +1,4 @@
-'use client';
+
 
 import WhatsAppCard from '@/components/contact/WhatsAppCard';
 import InstagramCard from '@/components/contact/InstagramCard';
