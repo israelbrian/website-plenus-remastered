@@ -99,6 +99,17 @@ export const metadata: Metadata = {
     description:
       'Móveis planejados 100% MDF, decoração, projetos e muito mais em Belo Horizonte.',
   },
+  icons: {
+    icon: [
+      { url: '/images/favicon/favicon.ico' },
+      { url: '/images/favicon/favicon.svg', type: 'image/svg+xml' },
+      { url: '/images/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/images/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/images/favicon/site.webmanifest',
 };
 
 export default function RootLayout({
