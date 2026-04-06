@@ -44,20 +44,16 @@ export default function ProductsPageClient() {
   }, [products, selectedCategory, searchQuery]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="font-family-primary text-4xl font-bold text-color-primary mb-4">
-          Produtos
-        </h1>
-        <SearchBar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-        />
-      </div>
+    <div className="container mx-auto px-4 py-6 md:py-10">
+      <h1 className="sr-only">Catálogo de Produtos</h1>
 
-      <div className="flex flex-col md:flex-row gap-8">
-        {/* Sidebar */}
-        <div className="w-full md:w-64 flex-shrink-0">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+        {/* Painel de Controle: Busca e Categorias (Mobile: Stacked Top / Desktop: Sidebar Left) */}
+        <div className="w-full md:w-64 flex-shrink-0 flex flex-col gap-3 md:gap-5">
+          <SearchBar
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
           <CategorySidebar
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
@@ -65,7 +61,7 @@ export default function ProductsPageClient() {
         </div>
 
         {/* Grid de Produtos */}
-        <div className="flex-1">
+        <div className="flex-1 mt-2 md:mt-0">
           <ProductGrid products={filteredProducts} />
         </div>
       </div>

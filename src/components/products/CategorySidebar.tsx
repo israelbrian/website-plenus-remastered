@@ -22,7 +22,7 @@ export default function CategorySidebar({
   }, []);
 
   return (
-    <aside className="bg-color-white rounded-lg shadow-md overflow-hidden">
+    <aside className="bg-color-white rounded-lg shadow-sm border border-color-border/30 overflow-hidden">
       {/* Cabeçalho da Sidebar com o Toggle Button (Apenas Mobile) */}
       <div className="flex justify-between items-center p-4 border-b border-color-border/30 md:border-b-0 md:pb-0">
         <h3 className="font-family-title text-xl font-bold text-color-primary">
@@ -55,8 +55,8 @@ export default function CategorySidebar({
                 setMenuOpen(false); // Fecha o menu no mobile após clicar na categoria
               }}
               className={`w-full text-left px-4 py-2 rounded-lg transition-colors font-family-secondary ${selectedCategory === null
-                  ? 'bg-color-primary text-color-white font-semibold'
-                  : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
+                ? 'bg-color-primary text-color-white font-semibold'
+                : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
                 }`}
             >
               Todas
@@ -70,8 +70,8 @@ export default function CategorySidebar({
                   setMenuOpen(false); // Fecha automaticamento no mobile pós-clique
                 }}
                 className={`w-full text-left px-4 py-2 rounded-lg transition-colors font-family-secondary ${selectedCategory === category.slug
-                    ? 'bg-color-primary text-color-white font-semibold'
-                    : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
+                  ? 'bg-color-primary text-color-white font-semibold'
+                  : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
                   }`}
               >
                 {category.nome}
