@@ -47,7 +47,7 @@ export default function ProductsPageClient() {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="font-family-primary text-4xl font-bold text-color-primary mb-4">
-          Nossos Produtos
+          Produtos
         </h1>
         <SearchBar
           searchQuery={searchQuery}
