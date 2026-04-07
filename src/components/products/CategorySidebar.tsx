@@ -35,7 +35,7 @@ export default function CategorySidebar({
     <aside className="bg-color-white rounded-lg shadow-sm border border-color-border/30 overflow-hidden">
       {/* Cabeçalho da Sidebar com o Toggle Button (Apenas Mobile) */}
       <div className="flex justify-between items-center p-4 border-b border-color-border/30 md:border-b-0 md:pb-0">
-        <h3 className="font-family-title text-xl font-bold text-color-primary">
+        <h3 className="font-family-title text-xl font-semibold text-color-primary">
           Categorias
         </h3>
 
@@ -61,9 +61,9 @@ export default function CategorySidebar({
           <li>
             <button
               onClick={() => handleCategoryClick(null)}
-              className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-family-secondary ${selectedCategory === null
-                ? 'bg-color-primary text-color-white font-semibold'
-                : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
+              className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-200 font-family-secondary ${selectedCategory === null
+                ? 'bg-gradient-to-r from-color-surface to-color-beige-50 text-color-primary font-semibold shadow-sm'
+                : 'bg-transparent text-color-muted hover:text-color-primary hover:bg-gradient-to-r hover:from-color-surface hover:to-color-white'
                 }`}
             >
               Todas
@@ -73,9 +73,9 @@ export default function CategorySidebar({
             <li key={category.slug}>
               <button
                 onClick={() => handleCategoryClick(category.slug)}
-                className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-family-secondary ${selectedCategory === category.slug
-                  ? 'bg-color-primary text-color-white font-semibold'
-                  : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
+                className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-200 font-family-secondary ${selectedCategory === category.slug
+                  ? 'bg-gradient-to-r from-color-surface to-color-beige-50 text-color-primary font-semibold shadow-sm'
+                  : 'bg-transparent text-color-muted hover:text-color-primary hover:bg-gradient-to-r hover:from-color-surface hover:to-color-white'
                   }`}
               >
                 {category.nome}
