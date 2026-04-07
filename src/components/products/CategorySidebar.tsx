@@ -21,6 +21,16 @@ export default function CategorySidebar({
     setCategories(getAllCategories());
   }, []);
 
+  const handleCategoryClick = (slug: string | null) => {
+    // 1. Dispara a seleção instantaneamente para o CSS ativar a "cor viva" (feedback)
+    onCategorySelect(slug);
+    
+    // 2. Aguarda a transição de cor ocorrer (350ms) e então fecha o menu mobile suavemente
+    setTimeout(() => {
+      setMenuOpen(false);
+    }, 350);
+  };
+
   return (
     <aside className="bg-color-white rounded-lg shadow-sm border border-color-border/30 overflow-hidden">
       {/* Cabeçalho da Sidebar com o Toggle Button (Apenas Mobile) */}
@@ -50,11 +60,8 @@ export default function CategorySidebar({
         <ul className="space-y-2">
           <li>
             <button
-              onClick={() => {
-                onCategorySelect(null);
-                setMenuOpen(false); // Fecha o menu no mobile após clicar na categoria
-              }}
-              className={`w-full text-left px-4 py-2 rounded-lg transition-colors font-family-secondary ${selectedCategory === null
+              onClick={() => handleCategoryClick(null)}
+              className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-family-secondary ${selectedCategory === null
                 ? 'bg-color-primary text-color-white font-semibold'
                 : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
                 }`}
@@ -65,11 +72,8 @@ export default function CategorySidebar({
           {categories.map((category) => (
             <li key={category.slug}>
               <button
-                onClick={() => {
-                  onCategorySelect(category.slug);
-                  setMenuOpen(false); // Fecha automaticamento no mobile pós-clique
-                }}
-                className={`w-full text-left px-4 py-2 rounded-lg transition-colors font-family-secondary ${selectedCategory === category.slug
+                onClick={() => handleCategoryClick(category.slug)}
+                className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-family-secondary ${selectedCategory === category.slug
                   ? 'bg-color-primary text-color-white font-semibold'
                   : 'bg-color-surface-alt text-color-primary hover:bg-color-border'
                   }`}
