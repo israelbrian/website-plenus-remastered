@@ -61,15 +61,17 @@ export default async function ProductDetailPage({
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Galeria */}
-        <div>
-          <ProductGallery images={product.imagens} productName={product.nome} />
-        </div>
+      <div className="bg-color-white rounded-2xl shadow-sm border border-color-border/20 p-6 md:p-8 lg:p-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Galeria */}
+          <div>
+            <ProductGallery images={product.imagens} productName={product.nome} />
+          </div>
 
-        {/* Informações */}
-        <div>
-          <ProductInfo product={product} />
+          {/* Informações */}
+          <div className="flex flex-col h-full">
+            <ProductInfo product={product} />
+          </div>
         </div>
       </div>
     </div>
