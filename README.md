@@ -365,12 +365,23 @@ O deploy é **100% automatizado**:
 3. O projeto é convertido em um Worker e distribuído globalmente.
 4. Não é necessario realizar o build manualmente, o Cloudflare faz isso automaticamente.
 
+### 🌐 Migração de Domínio Oficial (SEO e OpenGraph)
+
+Para assegurar que o site tenha Preview/Thumbnails no WhatsApp, Telegram e Facebook, o sistema (`layout.tsx`) utiliza o objeto universal `metadataBase`.  
+Quando o DNS for apontado para o domínio oficial (`plenusplanejados.com.br`), **nenhuma refatoração de código será necessária**. Siga essa etapa no painel da Cloudflare (Project > Settings > Environment Variables):
+
+| Variável (Nome) | Valor de Exemplo | Descrição e Propósito |
+|-----------------|------------------|-----------------------|
+| `NEXT_PUBLIC_SITE_URL` | `https://plenusplanejados.com.br` | Alimenta toda a árvore de SEO do Next.js, gerando links absolutos. Ex: `/images/a.jpg` passará a constar como `https://plenusplanejados.../images/a.jpg` nos links espelhos. |
+| `GOOGLE_SHEETS_CSV_URL` | `https://docs.google.com/spreadshe...` | Rota privada do CMS em CSV responsável por preencher o fluxo das Avaliações/Google Reviews da aba Contato. |
+
+**Importante:** Para realizar testes nativos na sua própria máquina antes de colocar em produção corporativa, crie um arquivo com exato nome `.env.local` (que fica invisível ao GitHub) com essas duas linhas coladas e preenchidas lá dentro.
+
 ### 🧪 Teste de Pré-Deploy (Crucial)
 
-Checklist de Deploy (Boas Práticas)
-[ ] Variáveis Sensíveis: Chaves de API devem ser configuradas como Secret no painel da Cloudflare (Settings > Variables).
-
-[ ] Variáveis Locais: Use o arquivo .dev.vars para testes locais com o comando preview (nunca suba este arquivo para o Git).
+#### Checklist de Deploy e Boas Práticas
+[ ] **Variáveis de Painel:** Garantir que as variáveis acima foram criadas corretamente no Servidor (Settings > Variables).
+[ ] **Limpeza Local:** Para o local, usar e manter o arquivo `.dev.vars` / `.env.local` isolados.
 
 [ ] Compatibilidade: Evite bibliotecas que dependem de recursos pesados do sistema operacional (como child_process), prefira alternativas compatíveis com Web Standards.
 
