@@ -63,7 +63,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       </div>
 
       {/* Ações empurradas para a base (mt-auto) ocupando 100% da largura do painel */}
-      <div className="flex flex-col sm:flex-row w-full gap-4 pt-8 mt-auto">
+      <div className="flex flex-col-reverse sm:flex-row w-full gap-4 pt-8 mt-auto">
         {/* Botão Voltar (30% do espaço horizontal no Desktop) */}
         <Link
           href="/produtos"
