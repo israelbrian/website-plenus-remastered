@@ -51,9 +51,30 @@
       "descricao": "Cozinha planejada completa com armários superiores e inferiores, ilha central e acabamento em MDF de alta qualidade.",
       "destaque": true,
       "relevancia": 4
+    },
+    {
+      "id": 5,
+      "nome": "Guarda Roupa Planejado Completo",
+      "categoria": "guarda-roupa",
+      "categoriaSlug": "guarda-roupa",
+      "imagemPrincipal": "/images/produtos/guarda-roupa/guarda-roupa-1.jpg",
+      "imagens": [
+        "/images/produtos/guarda-roupa/guarda-roupa-1.jpg",
+        "/images/produtos/guarda-roupa/guarda-roupa-2.jpg",
+        "/images/produtos/guarda-roupa/guarda-roupa-3.jpg",
+        "/images/produtos/guarda-roupa/guarda-roupa-4.jpg"
+      ],
+      "descricao": "Guarda roupa planejado completo com armários superiores e inferiores, ilha central e acabamento em MDF de alta qualidade.",
+      "destaque": true,
+      "relevancia": 4
     }
   ],
   "categorias": [
+    {
+      "slug": "guarda-roupa",
+      "nome": "Guarda Roupa",
+      "icone": "guarda-roupa"
+    },
     {
       "slug": "armarios",
       "nome": "Armários",
