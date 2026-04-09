@@ -31,6 +31,35 @@ export default function ProductGallery({
     setCurrentImageIndex(index);
   };
 
+  // Estados para Gestos Touch 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
+
+  // Handlers de Touch / Swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndHandler = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextImage();
+    } else if (isRightSwipe) {
+      prevImage();
+    }
+  };
+
   // Travar o scroll da página e escutar teclas quando aberto
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -70,6 +99,9 @@ export default function ProductGallery({
         <div 
           className="relative w-full h-[350px] md:h-[500px] rounded-lg overflow-hidden bg-color-surface-alt group cursor-pointer"
           onClick={() => setIsFullscreen(true)}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEndHandler}
         >
           <Image
             src={images[currentImageIndex]}
@@ -143,7 +175,13 @@ export default function ProductGallery({
           </button>
 
           {/* Imagem Principal Tela Cheia */}
-          <div className="relative w-full h-[80vh] md:h-[90vh] flex items-center justify-center px-4 md:px-16" onClick={() => setIsFullscreen(false)}>
+          <div 
+            className="relative w-full h-[80vh] md:h-[90vh] flex items-center justify-center px-4 md:px-16" 
+            onClick={() => setIsFullscreen(false)}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEndHandler}
+          >
             <div className="relative w-full h-full cursor-default" onClick={(e) => e.stopPropagation()}>
               <Image
                 src={images[currentImageIndex]}
