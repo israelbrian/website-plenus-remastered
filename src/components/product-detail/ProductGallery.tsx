@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
 
 interface ProductGalleryProps {
@@ -16,49 +18,53 @@ export default function ProductGallery({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Memoriza funções para usar no useEffect de teclado
-  const nextImage = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  }, [images.length]);
+  // Instâncias Embla Carousel: Principal e Lightbox
+  const [emblaRefMain, emblaApiMain] = useEmblaCarousel({ loop: true }, [
+    WheelGesturesPlugin({ forceWheelAxis: 'y' })
+  ]);
+  const [emblaRefLight, emblaApiLight] = useEmblaCarousel({ loop: true }, [
+    WheelGesturesPlugin({ forceWheelAxis: 'y' })
+  ]);
 
-  const prevImage = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  }, [images.length]);
+  // Sincroniza Embla Principal com o State
+  useEffect(() => {
+    if (!emblaApiMain) return;
+    const onSelect = () => setCurrentImageIndex(emblaApiMain.selectedScrollSnap());
+    emblaApiMain.on('select', onSelect);
+    return () => { emblaApiMain.off('select', onSelect); };
+  }, [emblaApiMain]);
+
+  // Sincroniza Embla Lightbox com o State
+  useEffect(() => {
+    if (!emblaApiLight) return;
+    const onSelect = () => setCurrentImageIndex(emblaApiLight.selectedScrollSnap());
+    emblaApiLight.on('select', onSelect);
+    return () => { emblaApiLight.off('select', onSelect); };
+  }, [emblaApiLight]);
+
+  // Se a API for scrollada programaticamente, garante que os Emblas alinhem
+  useEffect(() => {
+    if (emblaApiMain && emblaApiMain.selectedScrollSnap() !== currentImageIndex) {
+      emblaApiMain.scrollTo(currentImageIndex);
+    }
+    if (emblaApiLight && emblaApiLight.selectedScrollSnap() !== currentImageIndex) {
+      emblaApiLight.scrollTo(currentImageIndex);
+    }
+  }, [currentImageIndex, emblaApiMain, emblaApiLight]);
 
   const selectImage = (index: number) => {
     setCurrentImageIndex(index);
   };
 
-  // Estados para Gestos Touch 
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const minSwipeDistance = 50;
+  const nextImage = useCallback(() => {
+    if (isFullscreen && emblaApiLight) emblaApiLight.scrollNext();
+    else if (!isFullscreen && emblaApiMain) emblaApiMain.scrollNext();
+  }, [isFullscreen, emblaApiLight, emblaApiMain]);
 
-  // Handlers de Touch / Swipe
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEndHandler = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      nextImage();
-    } else if (isRightSwipe) {
-      prevImage();
-    }
-  };
+  const prevImage = useCallback(() => {
+    if (isFullscreen && emblaApiLight) emblaApiLight.scrollPrev();
+    else if (!isFullscreen && emblaApiMain) emblaApiMain.scrollPrev();
+  }, [isFullscreen, emblaApiLight, emblaApiMain]);
 
   // Travar o scroll da página e escutar teclas quando aberto
   useEffect(() => {
@@ -98,21 +104,26 @@ export default function ProductGallery({
         {/* Imagem Principal (Modo Normal) */}
         <div 
           className="relative w-full h-[350px] md:h-[500px] rounded-lg overflow-hidden bg-color-surface-alt group cursor-pointer"
-          onClick={() => setIsFullscreen(true)}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEndHandler}
+          ref={emblaRefMain}
         >
-          <Image
-            src={images[currentImageIndex]}
-            alt={`${productName} - Imagem ${currentImageIndex + 1}`}
-            fill
-            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-            priority
-          />
+          <div className="flex touch-pan-y h-full">
+            {images.map((image, i) => (
+              <div key={i} className="flex-[0_0_100%] min-w-0 relative h-full">
+                <Image
+                  src={image}
+                  alt={`${productName} - Imagem ${i + 1}`}
+                  fill
+                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  priority={i === 0}
+                  onClick={() => setIsFullscreen(true)}
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
           
           {/* Overlay Escurecido e Icone de Expandir (Aparece no Hoover do Desktop) */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+          <div className="absolute inset-0 pointer-events-none bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
             <div className="bg-color-white/90 text-color-primary p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg transform scale-95 group-hover:scale-100">
               <Maximize2 size={24} />
             </div>
@@ -175,22 +186,23 @@ export default function ProductGallery({
           </button>
 
           {/* Imagem Principal Tela Cheia */}
-          <div 
-            className="relative w-full h-[80vh] md:h-[90vh] flex items-center justify-center px-4 md:px-16" 
-            onClick={() => setIsFullscreen(false)}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEndHandler}
-          >
-            <div className="relative w-full h-full cursor-default" onClick={(e) => e.stopPropagation()}>
-              <Image
-                src={images[currentImageIndex]}
-                alt={`${productName} - Expandida`}
-                fill
-                className="object-contain"
-                quality={100}
-                priority
-              />
+          <div className="relative w-full h-[80vh] md:h-[90vh] flex flex-col justify-center overflow-hidden" ref={emblaRefLight}>
+            <div className="flex touch-pan-y h-full w-full">
+               {images.map((image, i) => (
+                 <div key={i} className="flex-[0_0_100%] min-w-0 relative h-full flex items-center justify-center px-4 md:px-16" onClick={() => setIsFullscreen(false)}>
+                   <div className="relative w-full h-full cursor-default" onClick={(e) => e.stopPropagation()}>
+                     <Image
+                       src={image}
+                       alt={`${productName} - Expandida ${i + 1}`}
+                       fill
+                       className="object-contain"
+                       quality={100}
+                       priority={i === 0}
+                       draggable={false}
+                     />
+                   </div>
+                 </div>
+               ))}
             </div>
             
             {/* Navegação Tela Cheia */}
