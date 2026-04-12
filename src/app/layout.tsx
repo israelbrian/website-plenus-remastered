@@ -99,6 +99,14 @@ export const metadata: Metadata = {
     title: 'Plenus Planejados - Móveis Planejados',
     description:
       'Móveis planejados 100% MDF, decoração, projetos e muito mais em Belo Horizonte.',
+    images: [
+      {
+        url: '/images/logo/plenus-new-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Logo Plenus Planejados',
+      },
+    ],
   },
   icons: {
     icon: [
