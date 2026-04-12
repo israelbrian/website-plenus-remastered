@@ -25,8 +25,8 @@
         "/images/produtos/banheiro/banheiro-3.jpg"
       ],
       "descricao": "Conjunto completo de marcenaria para banheiro planejado, composto por armários de excelente divisória e resistente à umidade típica do ambiente.",
-      "destaque": true,
-      "relevancia": 5
+      "destaque": false,
+      "relevancia": 3
     },
     {
       "id": 3,
@@ -51,7 +51,7 @@
         "/images/produtos/cozinha/armario&movel-cozinha-.jpg"
       ],
       "descricao": "Conjunto de móveis para bancada e pia da cozinha. Acabamento moderno que facilita a limpeza no dia-a-dia.",
-      "destaque": false,
+      "destaque": true,
       "relevancia": 3
     },
     {
@@ -67,7 +67,7 @@
         "/images/produtos/guarda-roupa/guarda-roupa-4.jpg"
       ],
       "descricao": "Guarda-roupa planejado completo com divisão inteligente, cabideiros reforçados, gavetas espaçosas e acabamento em MDF de altíssima qualidade.",
-      "destaque": true,
+      "destaque": false,
       "relevancia": 5
     },
     {
@@ -81,7 +81,7 @@
         "/images/produtos/cozinha/armario-cozinha-2.jpg"
       ],
       "descricao": "Torre de armários projetada para aproveitamento verticalizado do ambiente da cozinha. Estante generosa em litragem e nichos dedicados a micro-ondas ou forno.",
-      "destaque": true,
+      "destaque": false,
       "relevancia": 5
     },
     {
@@ -108,7 +108,7 @@
       ],
       "descricao": "Estação de trabalho milimetricamente desenhada visando conforto ergonômico, espaçamento de monitores e armazenamento essencial de documentos em gaveteiros fluidos.",
       "destaque": true,
-      "relevancia": 5
+      "relevancia": 4
     },
     {
       "id": 9,
@@ -123,7 +123,7 @@
         "/images/produtos/hall/fechamento-hall-apt-4.jpg"
       ],
       "descricao": "Estrutura imponente de fechamento e privacidade total de Halls e Entradas de apartamento. Garante estética blindada em edifícios de alto padrão, mantendo discrição absoluta.",
-      "destaque": true,
+      "destaque": false,
       "relevancia": 5
     },
     {
@@ -150,7 +150,7 @@
         "/images/produtos/painel-sala/painel-sala-2.jpeg"
       ],
       "descricao": "Painel contínuo com acabamento formidável. Harmoniza de forma fluída com quadros, arandelas de iluminação ou simplesmente trazendo aquecimento em madeira ao ambiente frio.",
-      "destaque": true,
+      "destaque": false,
       "relevancia": 5
     },
     {
