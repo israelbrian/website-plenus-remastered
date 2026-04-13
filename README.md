@@ -252,6 +252,25 @@ Para mudar o visual do site todo, acesse `tailwind.config.js` e altere a defini�
 - Informações: Nome, categoria, descrição detalhada
 - Navegação: Botão voltar ou breadcrumb
 
+## 🖼️ Engenharia de Carrosséis e Galerias (Embla Carousel)
+
+A infraestrutura visual de navegação contínua (presente nas vitrines em destaque na Home e nas Galerias / Lightbox dos produtos isolados) foi estritamente padronizada sob a biblioteca corporativa **Embla Carousel React**. Não existe variação ou duas abordagens distintas de slider no projeto.
+
+### 🛠️ Mecânica Interna e Como dar Manutenção
+
+- **Tracker Dinâmico (Bolinhas Inferiores):** Tanto na tela principal quanto no modal, o comportamento do Paginador (as bolinhas que flutuam embaixo informando a foto atual visualizada) ocorre sem processamento pesado no React. O próprio Embla dispara o ouvinte `emblaApi.on('select')`, atualizando rapidamente o estado local do hook para sincronizar o HTML (Dots).
+- **Mouse Wheel Pan (Rodinhas e Touchpads):** Todo carrossel está injetado com o pacote `WheelGesturesPlugin`. Isso significa que usuários da Web no Desktop não precisam clicar segurando e arrastar. Basta usar o scroll lateral normal do MacBook ou scroll do mouse vertical sobre o componente que ele converterá em navegação horizontal em 60 frames por segundo. Não apagar esse plugin de dentro de `useEmblaCarousel([...])`.
+- **Prevenção a Bloqueio de Clique no Modal (Overlay Fix):** Na página de Produto, as películas escuras decorativas (`bg-black/10`) sempre devem possuir a propriedade CSS de Tailwild `pointer-events-none`. Se isso for removido num acidente de manutenção, a div superior interceptará seu Click/Touch e matará o arrastamento do Embla e a ativação visual do sistema Fullscreen por baixo dele.
+
+### 📈 Regra de Escalabilidade
+
+**Como alterar a quantidade de itens rodando na Vitrine ou adicionar bolinhas?**
+Você nunca irá alterar ou inserir Componentes Manuais no código para expandir a página principal ou bolinhas de carrossel. 
+
+A arquitetura varre organicamente seus Arrays no banco de dados. Siga os dois passos abaixo:
+1. Abra o `src/data/products.json` e altere o campo `"destaque": true` (Mudar para false esconde, mudar novos móveis para true vai inseri-los no rodízio).
+2. **Atenção à Função Limitadora:** Abra o arquivo utilitário `src/lib/products.ts` e localize a função `getFeaturedProducts()`. Atualmente, ela possui uma trava de segurança chamada `.slice(0, 3)` no final da consulta. Isso significa que ela filtrará sempre um máximo absoluto de 3 produtos da vitrine para preservar a performance, mesmo que você tenha 10 itens como 'destaque: true'. Para exibir mais de 3 itens, basta aumentar esse número no `slice` ou removê-lo completamente. A inteligência do array no front-end cuidará do resto e injetará as bolinhas automáticas perfeitamente.
+
 ## 📊 Estrutura de Dados
 
 Arquivo único: `src/data/products.json` com todos os produtos e categorias.

@@ -13,6 +13,7 @@ import { createProductSlug } from '@/lib/products';
 
 export default function FeaturedProducts() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Ocupamos 100% do card para visualização maior.
   // Plugins de Autoplay e WheelGestures atuando para atender ao scroll do mouse natural.
@@ -28,6 +29,26 @@ export default function FeaturedProducts() {
   useEffect(() => {
     setProducts(getFeaturedProducts());
   }, []);
+
+  // Sincroniza o Bolinha Atual com o Deslizar do Motor
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
+    };
+  }, [emblaApi]);
+
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -123,6 +144,22 @@ export default function FeaturedProducts() {
             >
               <ChevronRight className="w-6 h-6 md:w-8 md:h-8 pl-[2px] md:pl-[4px]" />
             </button>
+
+            {/* Paginadores Dinâmicos (Dots) */}
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex items-center justify-center gap-2">
+              {products.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollTo(index)}
+                  aria-label={`Ir para o destaque ${index + 1}`}
+                  className={`h-2.5 md:h-3 rounded-full transition-all duration-300 ${
+                    index === selectedIndex
+                      ? 'w-8 md:w-10 bg-color-primary/60 shadow-md'
+                      : 'w-2.5 md:w-3 bg-color-primary/40 hover:bg-color-primary'
+                  }`}
+                />
+              ))}
+            </div>
 
           </div>
         )}
