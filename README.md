@@ -372,6 +372,41 @@ O projeto estará disponível dentro em `https://website-plenus-remastered.zdese
 - **Performance:** Lighthouse score mínimo 90+
 - **SEO:** Meta tags, structured data, sitemap
 
+## 🌟 Integração de Avaliações (Google Places & Arquitetura Fallback)
+
+O componente de avaliações da página de Contato possui uma arquitetura de altíssima redundância (Fail-Safe), desenhada para exibir as estrelas do Google de maneira profissional e com custo operacional nulo, além de suportar os desafios da injeção de variáveis em Edge Servers da Cloudflare.
+
+### 🛡️ Níveis de Redundância (Fallback System)
+
+1. **Plano A (`src/components/contact/GoogleReviews.tsx`):** 
+   Acessa no servidor a API oficial do "Google Places Details". Através da chave `GOOGLE_PLACES_API_KEY` (mantida oculta dentro do Backend), o script captura as avaliações mais úteis direto da conta comercial Google Maps/Places do cliente. 
+   - **Economia Bancária Estrita:** Para garantir Custo Zero e não estourar o cartão de crédito da credencial no Google Cloud do cliente final, a requisição obedece e é imobilizada por **ISR Global** (`next: { revalidate: 1296000 }`), ou seja, o Cloudflare congela o resultado por exatos **15 dias**. Dentro desse período, mesmo com 1 milhão de usuários acessando, nenhuma requisição paralela é cobrada da API. *Nota de Bilhetagem:* Basta o cliente plugar a conta do painel Google Cloud num Cartão de Crédito para "destrancar" a chave; zero dólares serão sacados já que os 15 dias blindam as requisições bem abaixo dos limites de cortesia monetária.
+
+2. **Plano B (`src/components/contact/GoogleReviewsSheets.tsx`):** 
+   Se caso a implementação do plano A houver complicações (Cadastro e Ativação do plano de faturamento no Google Cloud), 
+   será aplicada a solução via requisição a Planilha do Google Sheets. Onde o cliente poderá adicionar novas avaliações manualmente, e o sistema irá extrair os dados inseridos na planilha publicada na web, via Parse de CSV manual. 
+
+   
+3. **Plano C (`src/data/fallback-reviews.json`):** 
+   Para instabilidades do plano A e B ou a rede Cloudflare barrar *qualquer* fetch, a interface não quebra e aciona o **JSON Modular Estático**.
+   - Esse banco de dados manual (desacoplado p/ *Separation of Concerns*) foi minuciosamente populado com 3 avaliações reais autênticas extraídas do próprio negócio Plenus.
+   - **CDN Bypass Estático:** As fotos de perfil desse JSON também carregam remotamente Links dos Servidores GCloud Content. Graças à policy `<img referrerPolicy="no-referrer" />` estruturada nesses componentes, nenhum erro corporativo de Hotlinking (Status 403) ou cross-origin bloqueará as vitrines. A integridade de fechamento comercial e luxo de layout permanecerá intacta, sem avisar os clientes da falha por debaixo dos panos.
+
+### ⚙️ Engenharia de Consulta, Telemetria Silenciosa e Renderização (Google API)
+
+O **Plano A** foi esculpido utilizando lógicas profundas de orquestração arquitetônica visando controle total da saúde térmica da integração:
+- **Requisição Nativa no Backend (Server-Side Fetch):** O Next.js não utiliza `axios` ou chamadas Ajax Client-Side. O Fetch é executado estritamente pelas portas seguras do Node/Edge (Server Components). Desta forma, as chaves não trafegam pelos Headers públicos nem ficam reféns de extensões bloqueadoras (AdBlockers) do navegador do usuário.
+- **Log Tracer Silencioso e Controle de Falhas (Error Handling):** 
+  Uma intrincada malha de Try/Catch blinda a requisição inteira. Em caso de Anomalia na Rede, Bloqueios HTTP (CORS, 403, 500) ou formato `result.status !== "OK"` atípico entregue pela Google, a UI para o usuário não se desmancha. Em vez de disparar telas vermelhas de Erro Global, a nossa engine passivamente redireciona o fluxo para os dados Mockados (Plano B/C) **mas** deposita uma string criptografada e detalhada de rastreio (ex: `[CLOUDFLARE DEBUG] Google rejeitou a requisição...`) **com exclusividade no Console do Kernel do Servidor**. Assim, a equipe de Dev controla o que quebrou apenas abrindo o painel *"Real-time logs"* na aba *Functions* da Cloudflare, mantendo a experiência do cliente final sempre limpa.
+- **Parse Dinâmico e Componentização React:** Uma vez que o cérebro aprova o Payload HTTP, a interface do Maps não é inserida através de "Widgets" ou iFrames engessados de Terceiros que matam o design do projeto. A malha desmonta o JSON do Google, captura chaves vitais puras (`author_name`, `rating`, `text`, `relative_time_description`, `profile_photo_url`), hidrata nosso próprio Tipo Restrito de `Review` e entrega tudo "na veia" dos Componentes Tailwind (Card) criados por nós. O site da Plenus passa a ser dono da vitrine com controle ilimitado das cores, tipografia (Lucide Icons) e design do review da nuvem.
+
+### 🔑 Troubleshoting e Injeção Segura na Cloudflare (OpenNext)
+
+Durante implantações no Cloudflare Pages, o motor Node/Webpack (OpenNext) tem comportamentos muito peculiares com injeções Server-Side. Foi estabelecida a seguinte padronização de Vaults Estritos:
+- **Place ID Público (`NEXT_PUBLIC_GOOGLE_PLACE_ID`):** Recebe o prefixo público apenas para sinalizar aos scripts de roteamento livre a liberação irrestrita no processo de Transpilação Static Build. Cadastrado tranquilamente como `Environment Variable (Texto)` em qualquer lugar.
+- **API Key Oculta (`GOOGLE_PLACES_API_KEY`):** Não deve receber o sulfixo `NEXT_PUBLIC_` para evitar exposição de Chave de Faturamento na Árvore DOM para os usuários finais. Devido ao modo como os Adapters Cloudflare filtram cofres em React Server Components (RSC), não se deve marcá-la como `Secret/Encrypt`! Ela deve ser explicitamente salva em formato aberto "Text/Plain-text Variable" **NOS DOIS PAINÉIS DO CLOUDFLARE** (Aba `Build Variables` e Aba `Settings Runtime Vars`). 
+- **Dynamic Scope Rule:** A `GOOGLE_PLACES_API_KEY` deve sempre ser declarada e lida *dentro* do escopo assíncrono interno da função (Lazy Scoping `export default async function GoogleReviews() { const key = ... }`), prevenindo que o renderizador estático a converta em Null na etapa morta de Build e perforce a consulta instantêna direta da memória do Worker.
+
 ## 🚀 Deploy e Infraestrutura (Cloudflare Pages + OpenNext)
 
 Este projeto utiliza o **Cloudflare Pages** para hospedagem, aproveitando a infraestrutura global da Cloudflare (Edge Computing). O processo de adaptação do Next.js para o ambiente de Workers é feito através do **OpenNext**.
@@ -389,10 +424,6 @@ O deploy é **100% automatizado**:
 Para assegurar que o site tenha Preview/Thumbnails no WhatsApp, Telegram e Facebook, o sistema (`layout.tsx`) utiliza o objeto universal `metadataBase`.  
 Quando o DNS for apontado para o domínio oficial (`plenusplanejados.com.br`), **nenhuma refatoração de código será necessária**. Siga essa etapa no painel da Cloudflare (Project > Settings > Environment Variables):
 
-| Variável (Nome) | Valor de Exemplo | Descrição e Propósito |
-|-----------------|------------------|-----------------------|
-| `NEXT_PUBLIC_SITE_URL` | `https://plenusplanejados.com.br` | Alimenta toda a árvore de SEO do Next.js, gerando links absolutos. Ex: `/images/a.jpg` passará a constar como `https://plenusplanejados.../images/a.jpg` nos links espelhos. |
-| `GOOGLE_SHEETS_CSV_URL` | `https://docs.google.com/spreadshe...` | Rota privada do CMS em CSV responsável por preencher o fluxo das Avaliações/Google Reviews da aba Contato. |
 
 **Importante:** Para realizar testes nativos na sua própria máquina antes de colocar em produção corporativa, crie um arquivo com exato nome `.env.local` (que fica invisível ao GitHub) com essas duas linhas coladas e preenchidas lá dentro.
 
