@@ -26,7 +26,7 @@ export default async function GoogleReviews() {
 
             // Revalida apenas a cada 15 dias (1.296.000 segundos).
             // O componente vira 99% Stático na Edge ajudando a zerar a cota de cobrança 
-            // e os riscos bancários mensais do serviço Google Cloud do Cliente final.
+            // e os riscos bancários mensais do serviço Google Cloud do Cliente final
             const res = await fetch(GOOGLE_API_URL, {
                 next: { revalidate: 0 }
             });
