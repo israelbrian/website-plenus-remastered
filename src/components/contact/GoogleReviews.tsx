@@ -27,7 +27,7 @@ export default async function GoogleReviews() {
             // O componente vira 99% Stático na Edge ajudando a zerar a cota de cobrança 
             // e os riscos bancários mensais do serviço Google Cloud do Cliente final.
             const res = await fetch(GOOGLE_API_URL, {
-                next: { revalidate: 1296000 }
+                next: { revalidate: 0 }
             });
 
             if (res.ok) {
