@@ -1,11 +1,6 @@
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
 
-// Variáveis de ambiente para a API oficial do Google Places
-// (As chaves devem ser configuradas no Vercel/Cloudflare ou .env.local)
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || "";
-const GOOGLE_PLACE_ID = process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID || "";
-
 type Review = {
     id: string;
     author: string;
@@ -16,6 +11,11 @@ type Review = {
 };
 
 export default async function GoogleReviews() {
+    // Escopo de Runtime: O Next.js lê essas variáveis no EXATO SEGUNDO que o usuário abre a página,
+    // garantindo que elas capturem a chave "Secret" da Imagem 1 (Painel de Runtime) sem que o Webpack as apague.
+    const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || "";
+    const GOOGLE_PLACE_ID = process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID || "";
+
     let reviews: Review[] = [];
     let averageRating = "5.0";
 
