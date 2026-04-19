@@ -22,7 +22,7 @@ export default async function GoogleReviews() {
     try {
         if (GOOGLE_PLACES_API_KEY && GOOGLE_PLACE_ID) {
             const GOOGLE_API_URL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_PLACE_ID}&fields=reviews,rating&language=pt-BR&key=${GOOGLE_PLACES_API_KEY}`;
-            
+
             // Revalida apenas a cada 15 dias (1.296.000 segundos).
             // O componente vira 99% Stático na Edge ajudando a zerar a cota de cobrança 
             // e os riscos bancários mensais do serviço Google Cloud do Cliente final.
@@ -32,14 +32,14 @@ export default async function GoogleReviews() {
 
             if (res.ok) {
                 const data = await res.json();
-                
+
                 if (data.status !== "OK") {
-                    console.error("[ERRO GOOGLE API]", data.status, data.error_message);
+                    console.error("[CLOUDFLARE DEBUG] Google rejeitou a requisição:", data.status, data.error_message);
                 }
 
                 if (data.result && data.result.reviews) {
                     averageRating = data.result.rating ? data.result.rating.toFixed(1) : "5.0";
-                    
+
                     // O Google Maps devolve até 5 reviews recentes/relevantes
                     reviews = data.result.reviews.map((r: any, index: number) => ({
                         id: `place-review-${index}`,
@@ -49,11 +49,17 @@ export default async function GoogleReviews() {
                         date: r.relative_time_description || '', // Ex: '2 meses atrás'
                         avatar: r.profile_photo_url || (r.author_name ? r.author_name[0] : 'C'),
                     }));
+                } else {
+                    console.error("[CLOUDFLARE DEBUG] JSON do Google não encontrou Array de Reviews:", JSON.stringify(data).substring(0, 100));
                 }
+            } else {
+                console.error(`[CLOUDFLARE DEBUG] Fetch HTTP bloqueado internamente: Código ${res.status} - ${res.statusText}`);
             }
+        } else {
+            console.error(`[CLOUDFLARE DEBUG] Falha na injeção de Variáveis: API_KEY Existe? ${!!GOOGLE_PLACES_API_KEY} | PLACE_ID Existe? ${!!GOOGLE_PLACE_ID}`);
         }
-    } catch (error) {
-        console.error("Erro ao buscar avaliações da API do Google Places:", error);
+    } catch (error: any) {
+        console.error("[CLOUDFLARE DEBUG] Engine TryCatch Crítico (Network ou Timeout):", error.message);
     }
 
     // Fallback: Se as chaves não estiverem configuradas localmente, a API falhar, 
@@ -102,10 +108,10 @@ export default async function GoogleReviews() {
                         <div className="flex items-center gap-3 mb-3">
                             <div className="w-10 h-10 bg-color-surface-alt rounded-full flex items-center justify-center font-bold text-color-primary overflow-hidden shrink-0">
                                 {review.avatar.startsWith('http') || review.avatar.startsWith('//') ? (
-                                    <img 
-                                        src={review.avatar} 
-                                        alt={review.author} 
-                                        className="w-full h-full object-cover" 
+                                    <img
+                                        src={review.avatar}
+                                        alt={review.author}
+                                        className="w-full h-full object-cover"
                                         referrerPolicy="no-referrer"
                                     />
                                 ) : (
