@@ -1,5 +1,6 @@
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
+import fallbackReviewsData from "@/data/fallback-reviews.json";
 
 type Review = {
     id: string;
@@ -65,24 +66,7 @@ export default async function GoogleReviews() {
     // Fallback: Se as chaves não estiverem configuradas localmente, a API falhar, 
     // ou o Limite Acabar no painel, o site NÃO QUEBRA.
     if (reviews.length === 0) {
-        reviews = [
-            {
-                id: "fallback-1",
-                author: "Ricardo M.",
-                rating: 5,
-                text: "Armários de excelente qualidade e tudo dentro do prazo. Além disso, voltaram depois de dois meses só pra conferir se estávamos satisfeitos. Recomendo.",
-                date: "1 mês atrás",
-                avatar: "R"
-            },
-            {
-                id: "fallback-2",
-                author: "Ana Cláudia",
-                rating: 5,
-                text: "Excelente empresa, cumpre o que promete e é pontual na entrega. Minha cozinha ficou maravilhosa.",
-                date: "4 meses atrás",
-                avatar: "A"
-            }
-        ];
+        reviews = fallbackReviewsData;
     }
 
     return (

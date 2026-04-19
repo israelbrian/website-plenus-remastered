@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fallback-1",
+    "author": "Leandra",
+    "rating": 5,
+    "text": "Excelente experiência com a Plenus Planejados! Os móveis ficaram impecáveis, acabamento perfeito e o atendimento foi atencioso do início ao fim. Recomendo muito!",
+    "date": "2 meses atrás",
+    "avatar": "L"
+  },
+  {
+    "id": "fallback-2",
+    "author": "Milena Soares",
+    "rating": 5,
+    "text": "Excelente trabalho e profissional maravilhoso, a única reclamação foi que liguei na terça e o profissional só tinha tempo para me atendeu no sábado, porém fui super bem tratada e amei o projeto.",
+    "date": "2 meses atrás",
+    "avatar": "M"
+  },
+  {
+    "id": "fallback-3",
+    "author": "Ludmila Vendorim",
+    "rating": 5,
+    "text": "Amei meus móveis! Ficaram perfeitos e o atendimento foi ótimo.",
+    "date": "2 meses atrás",
+    "avatar": "L"
+  }
+]
