@@ -1,5 +1,6 @@
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
+import fallbackReviewsData from "@/data/fallback-reviews.json";
 
 // URL pública gerada pelo "Publicar na Web" do Google Sheets no formato CSV
 const GOOGLE_SHEETS_CSV_URL = process.env.GOOGLE_SHEETS_CSV_URL || "";
@@ -66,26 +67,7 @@ export default async function GoogleReviewsSheets() {
     }
 
     if (reviews.length === 0) {
-        reviews = [
-            {
-                id: "fallback-1",
-                author: "Ricardo M.",
-                rating: 5,
-                text: "Armários de excelente qualidade e tudo dentro do prazo. Além disso, voltaram depois de dois meses só pra conferir se estávamos satisfeitos. Recomendo.",
-                date: "1 mês atrás",
-                avatar: "R",
-                display: "sim"
-            },
-            {
-                id: "fallback-2",
-                author: "Ana Cláudia",
-                rating: 5,
-                text: "Excelente empresa, cumpre o que promete e é pontual na entrega. Minha cozinha ficou maravilhosa.",
-                date: "4 meses atrás",
-                avatar: "A",
-                display: "sim"
-            }
-        ];
+        reviews = fallbackReviewsData.map(r => ({ ...r, display: "sim" }));
     }
 
     const averageRating = reviews.length > 0
