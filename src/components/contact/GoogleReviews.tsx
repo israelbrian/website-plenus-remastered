@@ -118,7 +118,7 @@ export default async function GoogleReviews() {
             </div>
 
             <Link
-                href="https://www.google.com/maps/place/Plenus+planejados/@-19.8158329,-43.975393,17z"
+                href={GOOGLE_PLACE_ID ? `https://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}` : "https://www.google.com/maps/search/Plenus+Planejados+Belo+Horizonte"}
                 target="_blank"
                 className="mt-6 inline-block text-color-primary font-family-title font-bold text-sm hover:text-color-accent transition-colors underline decoration-color-accent decoration-2 underline-offset-4"
             >
