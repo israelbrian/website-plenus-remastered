@@ -103,11 +103,11 @@ export default function FeaturedProducts() {
                           Catálogo • {product.categoria}
                         </span>
 
-                        <h3 className="font-family-title text-2xl md:text-4xl font-bold text-color-primary mb-6 line-clamp-2">
+                        <h3 className="font-family-title text-2xl md:text-4xl font-bold text-color-primary mb-6 line-clamp-2 md:line-clamp-none">
                           {product.nome}
                         </h3>
 
-                        <p className="font-family-body text-color-muted text-sm md:text-base leading-relaxed mb-8 line-clamp-4">
+                        <p className="font-family-body text-color-muted text-sm md:text-base leading-relaxed mb-8 line-clamp-4 md:line-clamp-none">
                           {product.descricao}
                         </p>
 
