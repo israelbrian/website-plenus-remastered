@@ -16,6 +16,16 @@ export default function ProductsPageClient() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const handleCategorySelect = (category: string | null) => {
+    setSelectedCategory(category);
+    
+    // Quando o usuário seleciona "Todas" (categoria nula),
+    // queremos limpar o input de busca textual simultaneamente para exibir o catálogo integral
+    if (category === null) {
+      setSearchQuery('');
+    }
+  };
+
   useEffect(() => {
     setProducts(getAllProducts());
   }, []);
@@ -56,7 +66,7 @@ export default function ProductsPageClient() {
           />
           <CategorySidebar
             selectedCategory={selectedCategory}
-            onCategorySelect={setSelectedCategory}
+            onCategorySelect={handleCategorySelect}
           />
         </div>
 
