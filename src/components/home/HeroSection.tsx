@@ -8,7 +8,7 @@ export default function HeroSection() {
       className="relative w-full h-[400px] md:h-[500px] lg:h-[700px]" 
       style={{ clipPath: 'inset(0)' }}
     >
-      <div className="fixed inset-0 w-full h-full z-[-1]">
+      <div className="absolute inset-0 md:fixed md:w-full md:h-full z-[-1]">
         <Image
           src={HERO_IMAGE_PATH}
           alt="Plenus Planejados - Móveis Planejados"
