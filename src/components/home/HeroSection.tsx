@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const HERO_IMAGE_PATH = '/images/produtos/planejados comercio/salao-2.jpg';
+const HERO_IMAGE_PATH = '/images/produtos/cozinha/area-gourmet.jpg';
 
 export default function HeroSection() {
   return (
