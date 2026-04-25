@@ -20,8 +20,13 @@ export default async function GoogleReviews() {
     let reviews: Review[] = [];
     let averageRating = "5.0";
 
+    // 🔴 KILL SWITCH DE DESENVOLVIMENTO:
+    // Mude para "false" apenas no dia em que for fazer o Deploy Final para o cliente.
+    // Enquanto estiver "true", o Next.js usará os dados falsos do JSON e NÃO FARÁ requisições ao Google.
+    const DISABLE_API_DURING_DEV = true;
+
     try {
-        if (GOOGLE_PLACES_API_KEY && GOOGLE_PLACE_ID) {
+        if (!DISABLE_API_DURING_DEV && GOOGLE_PLACES_API_KEY && GOOGLE_PLACE_ID) {
             const GOOGLE_API_URL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_PLACE_ID}&fields=reviews,rating&language=pt-BR&key=${GOOGLE_PLACES_API_KEY}`;
 
             // Revalida apenas a cada 15 dias (1.296.000 segundos).
