@@ -322,7 +322,7 @@ npm start
 # Executar linter
 npm run lint
 ```
-
+ 
 O projeto estará disponível dentro em `https://website-plenus-remastered.zdesenhos.workers.dev/` (Dominio temporario)
 
 ## 📝 Padrões de Desenvolvimento
