@@ -13,8 +13,10 @@ export default function ContactForm() {
 
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+    const [nameError, setNameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
+    const [messageError, setMessageError] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -40,6 +42,11 @@ export default function ContactForm() {
     };
 
     const handlePhoneBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (!e.target.value.trim()) {
+            setPhoneError("O preenchimento do Telefone é obrigatório");
+            return;
+        }
+
         // Conta apenas os números reais retirando a máscara
         const rawNumbers = e.target.value.replace(/\D/g, "");
         
@@ -52,12 +59,33 @@ export default function ContactForm() {
     };
 
     const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (!e.target.value.trim()) {
+            setEmailError("O preenchimento do E-mail é obrigatório");
+            return;
+        }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         // Só dispara o erro se o usuário tiver digitado algo, mas estiver num formato inválido
         if (e.target.value && !emailRegex.test(e.target.value)) {
             setEmailError("Favor inserir um e-mail válido");
         } else {
             setEmailError("");
+        }
+    };
+
+    const handleNameBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (!e.target.value.trim()) {
+            setNameError("O preenchimento do Nome é obrigatório");
+        } else {
+            setNameError("");
+        }
+    };
+
+    const handleMessageBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+        if (!e.target.value.trim()) {
+            setMessageError("O preenchimento da Mensagem é obrigatório");
+        } else {
+            setMessageError("");
         }
     };
 
@@ -126,18 +154,28 @@ export default function ContactForm() {
                             Nome Completo <span className="text-color-accent">*</span>
                         </label>
                         <div className="relative group">
-                            <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-color-muted group-focus-within:text-color-accent transition-colors" />
+                            <UserIcon className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${nameError ? 'text-red-500' : 'text-color-muted group-focus-within:text-color-accent'}`} />
                             <input
                                 required
                                 type="text"
                                 id="name"
                                 name="name"
                                 value={formData.name}
-                                onChange={handleChange}
-                                className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all"
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    if (nameError) setNameError('');
+                                }}
+                                onBlur={handleNameBlur}
+                                className={`w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 rounded-xl outline-none font-family-body text-sm transition-all ${nameError ? 'border-red-400 focus:border-red-500 text-red-900 bg-red-50' : 'border-color-border/10 focus:border-color-accent text-color-primary'}`}
                                 placeholder="Seu nome"
                             />
                         </div>
+                        {nameError && (
+                            <p className="text-xs text-red-500 font-family-body mt-1 animate-in slide-in-from-top-1 fade-in font-medium flex items-center gap-1">
+                                <ExclamationCircleIcon className="w-3 h-3" />
+                                {nameError}
+                            </p>
+                        )}
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -209,17 +247,27 @@ export default function ContactForm() {
                             Sua Mensagem <span className="text-color-accent">*</span>
                         </label>
                         <div className="relative group flex-grow flex flex-col">
-                            <ChatBubbleLeftEllipsisIcon className="absolute left-3 top-3 w-5 h-5 text-color-muted group-focus-within:text-color-accent transition-colors" />
+                            <ChatBubbleLeftEllipsisIcon className={`absolute left-3 top-3 w-5 h-5 transition-colors ${messageError ? 'text-red-500' : 'text-color-muted group-focus-within:text-color-accent'}`} />
                             <textarea
                                 required
                                 id="message"
                                 name="message"
                                 value={formData.message}
-                                onChange={handleChange}
-                                className="w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 border-color-border/10 rounded-xl focus:border-color-accent outline-none font-family-body text-color-primary text-sm transition-all resize-none flex-grow"
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    if (messageError) setMessageError('');
+                                }}
+                                onBlur={handleMessageBlur}
+                                className={`w-full pl-10 pr-4 py-3 bg-color-surface-alt/20 border-2 rounded-xl outline-none font-family-body text-sm transition-all resize-none flex-grow ${messageError ? 'border-red-400 focus:border-red-500 text-red-900 bg-red-50' : 'border-color-border/10 focus:border-color-accent text-color-primary'}`}
                                 placeholder="Descreva seu projeto ou dúvida..."
                             />
                         </div>
+                        {messageError && (
+                            <p className="text-xs text-red-500 font-family-body mt-1 animate-in slide-in-from-top-1 fade-in font-medium flex items-center gap-1">
+                                <ExclamationCircleIcon className="w-3 h-3" />
+                                {messageError}
+                            </p>
+                        )}
                     </div>
                 </div>
 
