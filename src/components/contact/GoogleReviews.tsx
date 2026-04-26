@@ -46,8 +46,9 @@ export default async function GoogleReviews() {
                 if (data.result && data.result.reviews) {
                     averageRating = data.result.rating ? data.result.rating.toFixed(1) : "5.0";
 
-                    // O Google Maps devolve até 5 reviews recentes/relevantes
-                    reviews = data.result.reviews.map((r: any, index: number) => ({
+                    // O Google Maps devolve até 5 reviews, mas limitamos para 3 na UI 
+                    // para manter a simetria visual e alinhar ao número do fallback.
+                    reviews = data.result.reviews.slice(0, 3).map((r: any, index: number) => ({
                         id: `place-review-${index}`,
                         author: r.author_name || 'Cliente',
                         rating: r.rating || 5,
@@ -71,7 +72,7 @@ export default async function GoogleReviews() {
     // Fallback: Se as chaves não estiverem configuradas localmente, a API falhar, 
     // ou o Limite Acabar no painel, o site NÃO QUEBRA.
     if (reviews.length === 0) {
-        reviews = fallbackReviewsData;
+        reviews = fallbackReviewsData.slice(0, 3);
     }
 
     return (
