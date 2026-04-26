@@ -43,7 +43,7 @@ export default function ContactForm() {
 
     const handlePhoneBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (!e.target.value.trim()) {
-            setPhoneError("O preenchimento do Telefone é obrigatório");
+            setPhoneError("O preenchimento do Telefone é obrigatório!");
             return;
         }
 
@@ -52,7 +52,7 @@ export default function ContactForm() {
         
         // Se a pessoa preencheu alguma coisa, mas não deu no mínimo 10 números (Ex: (31) 3453-8599)
         if (rawNumbers.length > 0 && rawNumbers.length < 10) {
-            setPhoneError("Favor inserir um telefone válido com DDD");
+            setPhoneError("Favor inserir um telefone válido com DDD!");
         } else {
             setPhoneError("");
         }
@@ -60,14 +60,14 @@ export default function ContactForm() {
 
     const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (!e.target.value.trim()) {
-            setEmailError("O preenchimento do E-mail é obrigatório");
+            setEmailError("O preenchimento do E-mail é obrigatório!");
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         // Só dispara o erro se o usuário tiver digitado algo, mas estiver num formato inválido
         if (e.target.value && !emailRegex.test(e.target.value)) {
-            setEmailError("Favor inserir um e-mail válido");
+            setEmailError("Favor inserir um e-mail válido!");
         } else {
             setEmailError("");
         }
@@ -75,7 +75,7 @@ export default function ContactForm() {
 
     const handleNameBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (!e.target.value.trim()) {
-            setNameError("O preenchimento do Nome é obrigatório");
+            setNameError("O preenchimento do Nome é obrigatório!");
         } else {
             setNameError("");
         }
@@ -83,7 +83,7 @@ export default function ContactForm() {
 
     const handleMessageBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         if (!e.target.value.trim()) {
-            setMessageError("O preenchimento da Mensagem é obrigatório");
+            setMessageError("O preenchimento da Mensagem é obrigatório!");
         } else {
             setMessageError("");
         }
