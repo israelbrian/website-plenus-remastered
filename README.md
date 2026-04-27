@@ -412,13 +412,15 @@ Durante implantações no Cloudflare Pages, o motor Node/Webpack (OpenNext) tem 
 
 Este projeto utiliza o **Cloudflare Pages** para hospedagem, aproveitando a infraestrutura global da Cloudflare (Edge Computing). O processo de adaptação do Next.js para o ambiente de Workers é feito através do **OpenNext**.
 
-### 🛠️ Fluxo de Trabalho (CI/CD)
+### 🚀 Pipeline de Entrega Contínua (CD)
 
-O deploy é **100% automatizado**:
-1. Ao realizar um `push` ou `merge` para a branch `main`, o Cloudflare detecta a alteração.
-2. O ambiente de build executa o comando `opennextjs-cloudflare build`.
-3. O projeto é convertido em um Worker e distribuído globalmente.
-4. Não é necessario realizar o build manualmente, o Cloudflare faz isso automaticamente.
+O processo de deploy é automatizado através de **Continuous Deployment (CD)** via Cloudflare Pages. A cada `push` ou `merge` realizado na branch `main`, o ciclo de atualização é disparado automaticamente:
+
+1. **Detecção:** A Cloudflare monitora o repositório GitHub e identifica a nova alteração.
+2. **Build:** O ambiente de execução processa o comando `opennextjs-cloudflare build` para gerar a versão otimizada do site.
+3. **Distribuição:** O projeto é convertido em um *Cloudflare Worker* e distribuído globalmente na rede de borda (Edge Network).
+
+> **⚠️ Nota de Arquitetura:** Este fluxo compreende uma etapa de **Entrega Contínua (CD)**. Atualmente, o deploy ocorre de forma direta após o push, sem uma etapa prévia de **Integração Contínua (CI)** com testes unitários ou validadores de qualidade. A implementação de testes automatizados no pipeline está mapeada no backlog do projeto.
 
 ### 🌐 Migração de Domínio Oficial (SEO e OpenGraph)
 
