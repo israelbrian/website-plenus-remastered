@@ -438,9 +438,34 @@ Quando o DNS for apontado para o domínio oficial (`plenusplanejados.com.br`), *
 
 Como o ambiente da Cloudflare (Workers) é diferente do Node.js tradicional, algo que funciona no `npm run dev` pode falhar em produção. Para evitar deploys quebrados, utilize o comando de preview:
 
-```
+```bash
 npm run preview
 ```
+
+## 🌿 Gestão de Branches (Git Workflow)
+
+Para garantir a rastreabilidade das funcionalidades e blindar a branch de produção de códigos instáveis, o projeto adota uma arquitetura de versionamento modularizada. A seguir, o mapeamento e a finalidade de cada branch ativa no repositório:
+
+- `main`
+  - **Propósito:** É a branch de Produção. Reflete exatamente o que está no ar para os clientes finais da Plenus. Apenas código 100% testado, refatorado e livre de bugs é mergeado aqui para disparo automático do Deploy na Cloudflare.
+  
+- `feat/real-products`
+  - **Propósito:** Branch destinada à substituição dos dados de "Mock" (esboço) pelos produtos reais do catálogo da Plenus Planejados. Contém a refatoração final de conteúdo (`products.json`), injeção de recursos visuais densos (efeitos Parallax) e refinos gerais que preparam o site para o lançamento comercial com dados reais.
+
+- `feat/api-google`
+  - **Propósito:** Isola o desenvolvimento, a lógica e o Fail-Safe da integração das Avaliações via *Google Places Details API*. Todas as travas (`.slice`), Fallbacks e Kill Switches foram construídos e homologados inicialmente aqui antes de compor o layout da tela de Contato.
+
+- `feat/api-resend`
+  - **Propósito:** Responsável exclusiva por orquestrar o motor de envio de e-mails (`Resend`). Abriga as tipagens de rotas do Next.js (Edge Server Functions) responsáveis por despachar orçamentos diretamente para o *vendas@plenusplanejados.com.br*.
+
+- `fix/ui-polishing`
+  - **Propósito:** Branch de "Polimento". Onde ocorrem correções finas de interface, refatorações da ergonomia mobile (espaçamentos, margens, responsividade de inputs) e reparos visuais nas caixas e modais.
+
+- `refactor/layout-alignment`
+  - **Propósito:** Refatorações estruturais profundas do projeto (Header, Footer, Grid Systems). Branch usada para modificar a hierarquia CSS Core das telas ou modernizar a navegação principal sem correr o risco de estragar páginas já consolidadas.
+
+- `chore/ci-cd-tests`
+  - **Propósito:** Branch "Laboratório". Usada para investigar e corrigir erros de build (`npm run build`), testar limites da infraestrutura do OpenNext, analisar logs e reconfigurar as amarrações Cloudflare sem afetar as funcionalidades limpas do front-end.
 
 ## 📄 Licença
 
