@@ -316,7 +316,7 @@ Mapeamento das categorias legado:
 ### Pré-requisitos
 - Node.js 18+ instalado
 - npm ou yarn
-
+ 
 ### Instalação
 
 ```bash
