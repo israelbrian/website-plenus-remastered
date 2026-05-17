@@ -23,7 +23,7 @@ export default async function GoogleReviews() {
     // 🔴 KILL SWITCH DE DESENVOLVIMENTO:
     // Mude para "false" apenas no dia em que for fazer o Deploy Final para o cliente.
     // Enquanto estiver "true", o Next.js usará os dados falsos do JSON e NÃO FARÁ requisições ao Google.
-    const DISABLE_API_DURING_DEV = true;
+    const DISABLE_API_DURING_DEV = false;
 
     try {
         if (!DISABLE_API_DURING_DEV && GOOGLE_PLACES_API_KEY && GOOGLE_PLACE_ID) {
