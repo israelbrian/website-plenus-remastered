@@ -13,6 +13,7 @@ Modernizar o website legado para uma aplicação web moderna, responsiva e perfo
 - **TypeScript** - Tipagem estática
 - **Tailwind CSS** - Framework CSS utility-first com Design System centralizado
 - **Resend** - Biblioteca para envio de e-mail via api key.
+- **Google Places API (GCP)** - API para integração dinâmica e consulta em tempo real das avaliações do Google.
 
 ### Bibliotecas Complementares
 - **Lucide React** - Ícones gratuitos e modernos
@@ -376,21 +377,16 @@ O projeto estará disponível dentro em `https://website-plenus-remastered.zdese
 
 O componente de avaliações da página de Contato possui uma arquitetura de altíssima redundância (Fail-Safe), desenhada para exibir as estrelas do Google de maneira profissional e com custo operacional nulo, além de suportar os desafios da injeção de variáveis em Edge Servers da Cloudflare.
 
-### 🛡️ Níveis de Redundância (Fallback System)
+### 🛡️ Arquitetura e Redundância (Fallback)
 
-1. **Plano A (`src/components/contact/GoogleReviews.tsx`):** 
-   Acessa no servidor a API oficial do "Google Places Details". Através da chave `GOOGLE_PLACES_API_KEY` (mantida oculta dentro do Backend), o script captura as avaliações mais úteis direto da conta comercial Google Maps/Places do cliente. 
-   - **Economia Bancária Estrita:** Para garantir Custo Zero e não estourar o cartão de crédito da credencial no Google Cloud do cliente final, a requisição obedece e é imobilizada por **ISR Global** (`next: { revalidate: 1296000 }`), ou seja, o Cloudflare congela o resultado por exatos **15 dias**. Dentro desse período, mesmo com 1 milhão de usuários acessando, nenhuma requisição paralela é cobrada da API. *Nota de Bilhetagem:* Basta o cliente plugar a conta do painel Google Cloud num Cartão de Crédito para "destrancar" a chave; zero dólares serão sacados já que os 15 dias blindam as requisições bem abaixo dos limites de cortesia monetária.
+1. **Integração Oficial (`src/components/contact/GoogleReviews.tsx`):**
+   Acessa via servidor a API oficial do Google Places. Através da chave `GOOGLE_PLACES_API_KEY` configurada na Cloudflare, o script captura as avaliações reais do perfil comercial do cliente.
+   - **Controle de Custos:** Para garantir custo zero, a requisição utiliza **ISR Global** (`next: { revalidate: 1296000 }`), mantendo o resultado congelado em cache na Edge da Cloudflare por **15 dias**. Nenhuma chamada excedente é cobrada, protegendo integralmente a conta de faturamento do cliente.
 
-2. **Plano B (`src/components/contact/GoogleReviewsSheets.tsx`):** 
-   Se caso a implementação do plano A houver complicações (Cadastro e Ativação do plano de faturamento no Google Cloud), 
-   será aplicada a solução via requisição a Planilha do Google Sheets. Onde o cliente poderá adicionar novas avaliações manualmente, e o sistema irá extrair os dados inseridos na planilha publicada na web, via Parse de CSV manual. 
+2. **Sistema de Fallback Automático (`src/data/fallback-reviews.json`):**
+   Caso a API do Google apresente instabilidades ou a chave seja revogada, a interface entra em modo de segurança (Fail-Safe) imediatamente. O front-end intercepta o erro e renderiza dados estáticos pré-aprovados deste JSON. Isso garante que o layout e as vitrines permaneçam impecáveis, sem estourar erros na tela do usuário final.
 
-   
-3. **Plano C (`src/data/fallback-reviews.json`):** 
-   Para instabilidades do plano A e B ou a rede Cloudflare barrar *qualquer* fetch, a interface não quebra e aciona o **JSON Modular Estático**.
-   - Esse banco de dados manual (desacoplado p/ *Separation of Concerns*) foi minuciosamente populado com 3 avaliações reais autênticas extraídas do próprio negócio Plenus.
-   - **CDN Bypass Estático:** As fotos de perfil desse JSON também carregam remotamente Links dos Servidores GCloud Content. Graças à policy `<img referrerPolicy="no-referrer" />` estruturada nesses componentes, nenhum erro corporativo de Hotlinking (Status 403) ou cross-origin bloqueará as vitrines. A integridade de fechamento comercial e luxo de layout permanecerá intacta, sem avisar os clientes da falha por debaixo dos panos.
+*Bônus:* O repositório também inclui o componente alternativo `src/components/contact/GoogleReviewsSheets.tsx`. Ele foi deixado como uma carta na manga caso, no futuro, o cliente deseje controle editorial total (escolher "a dedo" as avaliações através de uma planilha pública do Google Sheets).
 
 ### ⚙️ Engenharia de Consulta, Telemetria Silenciosa e Renderização (Google API)
 
