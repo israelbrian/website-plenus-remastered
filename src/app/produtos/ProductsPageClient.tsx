@@ -1,18 +1,18 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
-import {
-  getAllProducts,
-  getProductsByCategory,
-  searchProducts,
-} from '@/lib/products';
+import { useState, useMemo } from 'react';
 import { Product } from '@/types';
 import CategorySidebar from '@/components/products/CategorySidebar';
 import SearchBar from '@/components/products/SearchBar';
 import ProductGrid from '@/components/products/ProductGrid';
 
-export default function ProductsPageClient() {
-  const [products, setProducts] = useState<Product[]>([]);
+interface ProductsPageClientProps {
+  initialProducts: Product[];
+  initialCategories: Category[];
+}
+
+export default function ProductsPageClient({ initialProducts, initialCategories }: ProductsPageClientProps) {
+  const [products] = useState<Product[]>(initialProducts);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -26,27 +26,22 @@ export default function ProductsPageClient() {
     }
   };
 
-  useEffect(() => {
-    setProducts(getAllProducts());
-  }, []);
-
   const filteredProducts = useMemo(() => {
     let filtered = products;
 
     // Filtrar por categoria
     if (selectedCategory) {
-      filtered = getProductsByCategory(selectedCategory);
+      filtered = filtered.filter((p) => p.categoriaSlug === selectedCategory);
     }
 
     // Filtrar por busca
     if (searchQuery.trim()) {
-      filtered = searchProducts(searchQuery);
-      // Se há categoria selecionada, aplicar ambos os filtros
-      if (selectedCategory) {
-        filtered = filtered.filter(
-          (p) => p.categoriaSlug === selectedCategory
-        );
-      }
+      const lowerQuery = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (p) =>
+          p.nome.toLowerCase().includes(lowerQuery) ||
+          p.descricao.toLowerCase().includes(lowerQuery)
+      );
     }
 
     // Ordenar por relevância
@@ -65,6 +60,7 @@ export default function ProductsPageClient() {
             onSearchChange={setSearchQuery}
           />
           <CategorySidebar
+            categories={initialCategories}
             selectedCategory={selectedCategory}
             onCategorySelect={handleCategorySelect}
           />

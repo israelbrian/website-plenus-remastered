@@ -7,12 +7,14 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
-import { getFeaturedProducts } from '@/lib/products';
 import { Product } from '@/types';
 import { createProductSlug } from '@/lib/products';
 
-export default function FeaturedProducts() {
-  const [products, setProducts] = useState<Product[]>([]);
+interface FeaturedProductsProps {
+  products: Product[];
+}
+
+export default function FeaturedProducts({ products }: FeaturedProductsProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Ocupamos 100% do card para visualização maior.
@@ -25,10 +27,6 @@ export default function FeaturedProducts() {
       WheelGesturesPlugin({ forceWheelAxis: 'y' })
     ]
   );
-
-  useEffect(() => {
-    setProducts(getFeaturedProducts());
-  }, []);
 
   // Sincroniza o Bolinha Atual com o Deslizar do Motor
   useEffect(() => {

@@ -1,12 +1,15 @@
 import HeroSection from '@/components/home/HeroSection';
 import AboutSection from '@/components/home/AboutSection';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
+import { getFeaturedProducts } from '@/lib/products';
 
-export default function Home() {
+export default async function Home() {
+  const featuredProducts = await getFeaturedProducts();
+
   return (
     <main>
       <HeroSection />
-      <FeaturedProducts />
+      <FeaturedProducts products={featuredProducts} />
       <AboutSection />
     </main>
   );
