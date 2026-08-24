@@ -2,7 +2,6 @@
 
 Este documento serve como **Plano de Implementação** e **Fonte da Verdade** para a construção do repositório Back-end (API) da Plenus Planejados. Esta API substituirá o arquivo estático genérico (`products.json`) garantindo um catálogo vivo, dinâmico e gerenciável via painel.
 
-
 ## 🏛️ Arquitetura Desacoplada (Microsserviços)
 
 A arquitetura geral do projeto será distribuída em repositórios independentes:
