@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Product } from '@/types';
+import { Product, Category } from '@/types';
 import CategorySidebar from '@/components/products/CategorySidebar';
 import SearchBar from '@/components/products/SearchBar';
 import ProductGrid from '@/components/products/ProductGrid';
