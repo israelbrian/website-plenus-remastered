@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "echo INTERNAL_API_KEY=$INTERNAL_API_KEY >> .env.production && echo NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL >> .env.production && next build",
+    "build": "next build",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
