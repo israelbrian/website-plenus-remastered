@@ -3,40 +3,49 @@ import { Product, Category } from '@/types';
 // ⏱️ Configuração de cache de 15 dias (fácil manutenção)
 export const CACHE_REVALIDATION_TIME = 1296000;
 
-async function fetchAPI<T>(path: string, fallbackValue: T): Promise<T> {
-  // Lemos no momento da requisição para garantir o Runtime do Edge
-  // Evitamos o NEXT_PUBLIC_ para impedir que o Next.js congele a variável vazia no build
-  const API_URL = process.env.PLENUS_API_URL || 'http://localhost:8787';
-  const API_KEY = process.env.INTERNAL_API_KEY || '';
+/**
+ * Resolve a URL base do site para chamadas internas às API Routes.
+ * Em produção no Cloudflare, usa SITE_URL definida no wrangler.jsonc.
+ * Em desenvolvimento, aponta para localhost.
+ */
+function getBaseUrl(): string {
+  return process.env.SITE_URL || 'http://localhost:3000';
+}
 
+// 1. API: Listar todos (via API Route proxy interna)
+export async function getAllProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${API_URL}${path}`, {
+    const baseUrl = getBaseUrl();
+    const res = await fetch(`${baseUrl}/api/produtos`, {
       next: { revalidate: CACHE_REVALIDATION_TIME },
-      headers: {
-        'x-api-key': API_KEY,
-      },
     });
-
     if (!res.ok) {
-      console.error(`Erro ao conectar na API Plenus: ${res.statusText}`);
-      return fallbackValue;
+      console.error(`Erro ao buscar produtos: ${res.status} ${res.statusText}`);
+      return [];
     }
-    
     return await res.json();
   } catch (error) {
-    console.error(`Falha na rede ao conectar na API Plenus:`, error);
-    return fallbackValue; // Evita falhas críticas em builds SSG
+    console.error('Falha na rede ao buscar produtos:', error);
+    return [];
   }
 }
 
-// 1. API: Listar todos
-export async function getAllProducts(): Promise<Product[]> {
-  return fetchAPI<Product[]>('/produtos', []);
-}
-
-// 2. API: Categorias
+// 2. API: Categorias (via API Route proxy interna)
 export async function getAllCategories(): Promise<Category[]> {
-  return fetchAPI<Category[]>('/categorias', []);
+  try {
+    const baseUrl = getBaseUrl();
+    const res = await fetch(`${baseUrl}/api/categorias`, {
+      next: { revalidate: CACHE_REVALIDATION_TIME },
+    });
+    if (!res.ok) {
+      console.error(`Erro ao buscar categorias: ${res.status} ${res.statusText}`);
+      return [];
+    }
+    return await res.json();
+  } catch (error) {
+    console.error('Falha na rede ao buscar categorias:', error);
+    return [];
+  }
 }
 
 // 3. Memória: Detalhes

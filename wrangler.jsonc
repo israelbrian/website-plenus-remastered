@@ -23,6 +23,7 @@
     "enabled": true
   },
   "vars": {
-    "PLENUS_API_URL": "https://plenus-api-backend.zdesenhos.workers.dev"
+    "PLENUS_API_URL": "https://plenus-api-backend.zdesenhos.workers.dev",
+    "SITE_URL": "https://website-plenus-remastered.zdesenhos.workers.dev"
   }
 }
