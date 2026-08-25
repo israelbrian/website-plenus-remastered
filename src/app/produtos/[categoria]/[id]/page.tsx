@@ -11,13 +11,7 @@ interface ProductDetailPageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  const products = await getAllProducts();
-  return products.map((product) => ({
-    categoria: product.categoriaSlug,
-    id: createProductSlug(product.id, product.nome),
-  }));
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({
   params,

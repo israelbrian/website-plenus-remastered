@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Explore nossa linha completa de móveis planejados',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductsPage() {
   const products = await getAllProducts();
   const categories = await getAllCategories();
