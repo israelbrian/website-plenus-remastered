@@ -1,10 +1,21 @@
 import { NextResponse } from 'next/server';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const API_URL = process.env.PLENUS_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787';
-  const API_KEY = process.env.INTERNAL_API_KEY || '';
+  let API_URL = process.env.PLENUS_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787';
+  let API_KEY = process.env.INTERNAL_API_KEY || '';
+
+  try {
+    const cf = await getCloudflareContext({ async: true });
+    if (cf?.env) {
+      API_URL = (cf.env as any).PLENUS_API_URL || API_URL;
+      API_KEY = (cf.env as any).INTERNAL_API_KEY || API_KEY;
+    }
+  } catch {
+    // Fallback para ambiente local
+  }
 
   try {
     const res = await fetch(`${API_URL}/categorias`, {
