@@ -1,15 +1,14 @@
 import { Product, Category } from '@/types';
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787';
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787';
-
 // ⏱️ Configuração de cache de 15 dias (fácil manutenção)
 export const CACHE_REVALIDATION_TIME = 1296000;
 
-// 🔒 Chave privada do servidor para ler as rotas GET autenticadas
-const API_KEY = process.env.INTERNAL_API_KEY || '';
-
 async function fetchAPI<T>(path: string, fallbackValue: T): Promise<T> {
+  // Lemos no momento da requisição para garantir o Runtime do Edge
+  // Evitamos o NEXT_PUBLIC_ para impedir que o Next.js congele a variável vazia no build
+  const API_URL = process.env.PLENUS_API_URL || 'http://localhost:8787';
+  const API_KEY = process.env.INTERNAL_API_KEY || '';
+
   try {
     const res = await fetch(`${API_URL}${path}`, {
       next: { revalidate: CACHE_REVALIDATION_TIME },
