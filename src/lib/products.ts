@@ -1,18 +1,35 @@
 import { Product, Category } from '@/types';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 
-const API_URL = process.env.PLENUS_API_URL || process.env.NEXT_PUBLIC_API_URL || 'https://plenus-api-backend.zdesenhos.workers.dev';
+// const API_URL = process.env.PLENUS_API_URL || process.env.NEXT_PUBLIC_API_URL || 'https://plenus-api-backend.zdesenhos.workers.dev';
+const API_URL = process.env.PLENUS_API_URL || 'http://localhost:8787';
 
 // ⏱️ Configuração de cache de 15 dias (fácil manutenção)
 export const CACHE_REVALIDATION_TIME = 1296000;
 
 async function fetchAPI<T>(path: string, fallbackValue: T): Promise<T> {
   try {
-    const res = await fetch(`${API_URL}${path}`, {
-      next: { revalidate: CACHE_REVALIDATION_TIME }
-    });
+    let res: Response;
+
+    // 1. Tenta usar Service Binding nativo se estiver rodando dentro do Cloudflare Worker
+    try {
+      const cf = await getCloudflareContext({ async: true });
+      if (cf?.env && (cf.env as any).PLENUS_API) {
+        res = await (cf.env as any).PLENUS_API.fetch(new URL(path, 'https://internal').toString());
+      } else {
+        res = await fetch(`${API_URL}${path}`, {
+          next: { revalidate: CACHE_REVALIDATION_TIME }
+        });
+      }
+    } catch {
+      // 2. Fallback para fetch HTTP padrão (durante o Build SSG ou Localhost)
+      res = await fetch(`${API_URL}${path}`, {
+        next: { revalidate: CACHE_REVALIDATION_TIME }
+      });
+    }
 
     if (!res.ok) {
-      console.error(`Erro ao conectar na API Plenus: ${res.statusText}`);
+      console.error(`Erro ao conectar na API Plenus: ${res.status} ${res.statusText}`);
       return fallbackValue;
     }
     
