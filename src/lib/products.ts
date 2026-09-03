@@ -1,8 +1,7 @@
 import { Product, Category } from '@/types';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 
-// const API_URL = process.env.PLENUS_API_URL || process.env.NEXT_PUBLIC_API_URL || 'https://plenus-api-backend.zdesenhos.workers.dev';
-const API_URL = process.env.PLENUS_API_URL || 'http://localhost:8787';
+const API_URL = process.env.PLENUS_API_URL
 
 // ⏱️ Configuração de cache de 15 dias (fácil manutenção)
 export const CACHE_REVALIDATION_TIME = 1296000;

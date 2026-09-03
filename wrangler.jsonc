@@ -25,8 +25,5 @@
   },
   "observability": {
     "enabled": true
-  },
-  "vars": {
-    "PLENUS_API_URL": "https://plenus-api-backend.zdesenhos.workers.dev"
   }
 }
