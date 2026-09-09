@@ -59,7 +59,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
   return (
     <section 
       className="py-12 md:py-20 bg-fixed bg-center bg-cover relative"
-      style={{ backgroundImage: `url('/images/produtos/escritorio/escritorio.jpg')` }}
+      style={{ backgroundImage: `url('/images/home/featured-products-bg.jpg')` }}
     >
       <div className="absolute inset-0 bg-color-surface/90 backdrop-blur-sm pointer-events-none" />
       <div className="container mx-auto px-4 relative z-10">
