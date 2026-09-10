@@ -194,11 +194,15 @@ Esta é a etapa mais importante da infraestrutura. A Cloudflare abrigará a zona
    npx wrangler login
    ```
 2. Navegue até o repositório da API `plenus-api-backend`.
-3. Criar o banco de dados D1 na nova conta:
+3. **Criar o banco de dados D1 na nova conta:**
    ```bash
    npx wrangler d1 create plenus-catalog-db
    ```
-4. O terminal retornará o novo `database_id`. Abra o arquivo `wrangler.jsonc` (ou `wrangler.toml`) da API e atualize o ID:
+4. **Criar o bucket R2 de imagens na nova conta:**
+   ```bash
+   npx wrangler r2 bucket create plenus-catalog-images
+   ```
+5. O terminal retornará o novo `database_id`. Abra o arquivo `wrangler.jsonc` (ou `wrangler.toml`) da API e atualize os bindings de D1 e R2:
    ```jsonc
    "d1_databases": [
      {
@@ -206,25 +210,64 @@ Esta é a etapa mais importante da infraestrutura. A Cloudflare abrigará a zona
        "database_name": "plenus-catalog-db",
        "database_id": "SEU-NOVO-DATABASE-ID-AQUI"
      }
+   ],
+   "r2_buckets": [
+     {
+       "binding": "BUCKET",
+       "bucket_name": "plenus-catalog-images"
+     }
    ]
    ```
-5. Executar a criação das tabelas no novo banco remoto:
-   ```bash
-   npx wrangler d1 execute plenus-catalog-db --remote --file=./schema.sql
-   ```
-6. (Opcional) Se houver dados prévios a serem migrados, exporte o SQL da conta antiga e execute no novo banco:
-   ```bash
-   npx wrangler d1 execute plenus-catalog-db --remote --file=./seed.sql
-   ```
-7. Definir a chave secreta da API na nova conta:
-   ```bash
-   npx wrangler secret put API_KEY
-   ```
-   *(Informe uma senha forte e anote-a de forma segura)*
-8. Realizar o deploy do Worker da API na nova conta:
-   ```bash
-   npx wrangler deploy
-   ```
+
+---
+
+### Passo 5.4.1: Migração do Storage de Fotos (Cloudflare R2) & Sincronização do Seed SQL
+
+Como o bucket R2 na nova conta nascerá vazio, você precisará reenviar as fotos e sincronizar as URLs do banco D1:
+
+#### 1. Métodos para Upload em Lote das Fotos para o novo R2:
+
+* **Opção A: Upload em Lote via Script CLI (Recomendado se as fotos estão no seu PC):**
+  Navegue até a pasta local onde estão as fotos dos produtos e execute o script PowerShell para subir todos os arquivos recursivamente em segundos:
+  ```powershell
+  Get-ChildItem -Recurse -File | ForEach-Object {
+      $relativePath = $_.FullName.Substring((Get-Location).Path.Length + 1).Replace("\", "/")
+      Write-Host "Enviando: $relativePath ..."
+      npx wrangler r2 object put "plenus-catalog-images/$relativePath" --file="$($_.FullName)" --remote
+  }
+  ```
+
+* **Opção B: Cloudflare R2 Super Slurp (Migração Nuvem para Nuvem sem download local):**
+  1. No painel Cloudflare da nova conta, vá em **R2 > Data Migration**.
+  2. Configure a origem apontando para o bucket antigo utilizando as credenciais de API R2/S3 geradas na conta de origem.
+  3. A própria Cloudflare transferirá todos os gigabytes de fotos diretamente entre os buckets.
+
+* **Opção C: Upload via API (`POST /api/upload`):**
+  Disparar requisições em lote autenticadas enviando os arquivos multipart com o header `x-api-key`.
+
+#### 2. Configurar o Domínio Público do R2 (Public Bucket URL):
+1. No painel Cloudflare da nova conta, acesse **R2 > plenus-catalog-images > Settings**.
+2. Em **Public Access**, ative o **R2.dev subdomain** (ou conecte um Custom Domain como `fotos.plenusplanejados.com.br`).
+3. Copie o novo prefixo de URL pública gerado (ex: `https://pub-novoid123.r2.dev`).
+
+#### 3. Sincronizar URLs no `seed-atualizado.sql` antes de popular o D1:
+> [!CAUTION]
+> **ATENÇÃO:** Se o arquivo `seed-atualizado.sql` contiver o prefixo da URL do bucket R2 antigo (ex: `https://pub-antigoid.r2.dev/...`), faça um **Find & Replace** no arquivo SQL substituindo o prefixo antigo pelo novo prefixo gerado no passo anterior.
+
+#### 4. Executar Schema, Seed e Segredos no novo D1:
+```bash
+# 1. Cria a estrutura de tabelas
+npx wrangler d1 execute plenus-catalog-db --remote --file=./database/schema.sql
+
+# 2. Popula os dados iniciais com as URLs atualizadas
+npx wrangler d1 execute plenus-catalog-db --remote --file=./database/seed-atualizado.sql
+
+# 3. Definir a chave secreta da API na nova conta
+npx wrangler secret put API_KEY
+
+# 4. Realizar o deploy do Worker da API na nova conta
+npx wrangler deploy
+```
 
 ---
 
