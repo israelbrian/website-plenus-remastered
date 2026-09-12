@@ -56,7 +56,7 @@ website-plenus-remastered/
 │       ├── produtos/                # Imagens dos produtos
 │       └── empresa/                 # Imagens da empresa
 ├── website-legado/                  # Código legado (preservado)
-└── [arquivos de configuração]
+└── [arquivos de configuração] 
 ```
 
 ## 🎨 Design System e Manutenibilidade
