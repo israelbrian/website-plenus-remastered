@@ -2,7 +2,7 @@ export default function AboutSection() {
   return (
     <section 
       className="py-16 md:py-24 bg-fixed bg-center bg-cover relative"
-      style={{ backgroundImage: `url('/images/produtos/cozinha/area-gourmet.jpg')` }}
+      style={{ backgroundImage: `url('/images/home/home-main-bg.jpg')` }}
     >
       <div className="absolute inset-0 bg-color-primary/80 backdrop-blur-sm pointer-events-none" />
       <div className="container mx-auto px-4 relative z-10">

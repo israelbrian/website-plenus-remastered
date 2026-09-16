@@ -42,3 +42,4 @@ next-env.d.ts
 .dev.vars*
 !.dev.vars.example
 !.env.example
+docs/04-dns-migration-and-cloudflare-setup.md

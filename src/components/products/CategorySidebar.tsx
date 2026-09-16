@@ -1,25 +1,21 @@
 'use client';
 
-import { getAllCategories } from '@/lib/products';
 import { Category } from '@/types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 
 interface CategorySidebarProps {
+  categories: Category[];
   selectedCategory: string | null;
   onCategorySelect: (category: string | null) => void;
 }
 
 export default function CategorySidebar({
+  categories,
   selectedCategory,
   onCategorySelect,
 }: CategorySidebarProps) {
-  const [categories, setCategories] = useState<Category[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setCategories(getAllCategories());
-  }, []);
 
   const handleCategoryClick = (slug: string | null) => {
     // 1. Dispara a seleção instantaneamente para o CSS ativar a "cor viva" (feedback)

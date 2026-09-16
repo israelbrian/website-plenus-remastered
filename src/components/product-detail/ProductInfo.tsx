@@ -8,8 +8,8 @@ interface ProductInfoProps {
   product: Product;
 }
 
-export default function ProductInfo({ product }: ProductInfoProps) {
-  const category: Category | undefined = getCategoryBySlug(product.categoriaSlug);
+export default async function ProductInfo({ product }: ProductInfoProps) {
+  const category: Category | undefined = await getCategoryBySlug(product.categoriaSlug);
 
   return (
     <div className="flex flex-col h-full">

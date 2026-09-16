@@ -12,7 +12,7 @@ interface ProductDetailPageProps {
 }
 
 export async function generateStaticParams() {
-  const products = getAllProducts();
+  const products = await getAllProducts();
   return products.map((product) => ({
     categoria: product.categoriaSlug,
     id: createProductSlug(product.id, product.nome),
@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: ProductDetailPageProps): Promise<Metadata> {
   const { id, categoria } = await params;
   const productId = extractIdFromSlug(id);
-  const product = getProductByCategoryAndId(categoria, productId);
+  const product = await getProductByCategoryAndId(categoria, productId);
 
   if (!product) {
     return {
@@ -60,7 +60,7 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const product = getProductByCategoryAndId(categoria, productId);
+  const product = await getProductByCategoryAndId(categoria, productId);
 
   if (!product) {
     notFound();
