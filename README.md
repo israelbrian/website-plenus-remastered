@@ -3,7 +3,7 @@
 Modernização do website legado desenvolvido em Microsoft FrontPage (2010) para uma aplicação web moderna com visualização dos produtos estilo e-commerce.
 ## 📋 Objetivo do Projeto
 
-Modernizar o website legado para uma aplicação web moderna, responsiva e performática, seguindo o conteúdo existente no projeto legado, seguindo as melhores práticas de desenvolvimento e melhorando significativamente a experiência do usuário com estrutura de e-commerce.
+Modernizar o website legado para uma aplicação web moderna, responsiva e performática, seguindo o conteúdo existente no projeto legado, seguindo as melhores práticas de desenvolvimento e melhorando significativamente a experiência do usuário com estrutura de e-commerce. 
 
 ## 🚀 Stack Tecnológica
 
